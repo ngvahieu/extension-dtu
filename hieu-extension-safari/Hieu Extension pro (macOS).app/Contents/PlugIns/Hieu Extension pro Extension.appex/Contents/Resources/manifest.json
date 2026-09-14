@@ -1,0 +1,79 @@
+{
+  "manifest_version": 3,
+  "name": "Hieu Extension pro",
+  "version": "3.3.0",
+  "description": "Bộ công cụ hỗ trợ thao tác học tập nhanh, gọn và tiện hơn trên trình duyệt.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "tabs",
+    "clipboardRead"
+  ],
+  "action": {
+    "default_title": "Hieu Extension pro",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png",
+    "512": "icon512.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.duytan.edu.vn/*",
+        "*://duytan.edu.vn/*"
+      ],
+      "js": [
+        "bypass.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true,
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "*://*.duytan.edu.vn/*",
+        "*://duytan.edu.vn/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "host_permissions": [
+    "https://vinkaycaptcha.onrender.com/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "logo.png",
+        "pen.png",
+        "book.png",
+        "dtu.png",
+        "icon16.png",
+        "icon32.png",
+        "icon48.png",
+        "icon128.png",
+        "icon512.png"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1114 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		50AB412E300A62F000AA3FB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB412D300A62F000AA3FB7 /* AppDelegate.swift */; };
+		50AB4130300A62F000AA3FB7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB412F300A62F000AA3FB7 /* SceneDelegate.swift */; };
+		50AB4133300A62F000AA3FB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4131300A62F000AA3FB7 /* LaunchScreen.storyboard */; };
+		50AB4136300A62F000AA3FB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4134300A62F000AA3FB7 /* Main.storyboard */; };
+		50AB413F300A62F000AA3FB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB413E300A62F000AA3FB7 /* AppDelegate.swift */; };
+		50AB4142300A62F000AA3FB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4140300A62F000AA3FB7 /* Main.storyboard */; };
+		50AB4149300A62F000AA3FB7 /* Hieu Extension pro Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 50AB4148300A62F000AA3FB7 /* Hieu Extension pro Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		50AB4153300A62F000AA3FB7 /* Hieu Extension pro Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 50AB4152300A62F000AA3FB7 /* Hieu Extension pro Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		50AB4158300A62F000AA3FB7 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 50AB411D300A62EF00AA3FB7 /* Main.html */; };
+		50AB4159300A62F000AA3FB7 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 50AB411D300A62EF00AA3FB7 /* Main.html */; };
+		50AB415A300A62F000AA3FB7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB411F300A62EF00AA3FB7 /* Icon.png */; };
+		50AB415B300A62F000AA3FB7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB411F300A62EF00AA3FB7 /* Icon.png */; };
+		50AB415C300A62F000AA3FB7 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4120300A62EF00AA3FB7 /* Style.css */; };
+		50AB415D300A62F000AA3FB7 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4120300A62EF00AA3FB7 /* Style.css */; };
+		50AB415E300A62F000AA3FB7 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4121300A62EF00AA3FB7 /* Script.js */; };
+		50AB415F300A62F000AA3FB7 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4121300A62EF00AA3FB7 /* Script.js */; };
+		50AB4160300A62F000AA3FB7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB4122300A62EF00AA3FB7 /* ViewController.swift */; };
+		50AB4161300A62F000AA3FB7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB4122300A62EF00AA3FB7 /* ViewController.swift */; };
+		50AB4162300A62F000AA3FB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4123300A62F000AA3FB7 /* Assets.xcassets */; };
+		50AB4163300A62F000AA3FB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4123300A62F000AA3FB7 /* Assets.xcassets */; };
+		50AB4164300A62F000AA3FB7 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB4125300A62F000AA3FB7 /* SafariWebExtensionHandler.swift */; };
+		50AB4165300A62F000AA3FB7 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB4125300A62F000AA3FB7 /* SafariWebExtensionHandler.swift */; };
+		50AB4185300A62F100AA3FB7 /* icon16.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4177300A62F100AA3FB7 /* icon16.png */; };
+		50AB4186300A62F100AA3FB7 /* bypass.js in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4178300A62F100AA3FB7 /* bypass.js */; };
+		50AB4187300A62F100AA3FB7 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4179300A62F100AA3FB7 /* background.js */; };
+		50AB4188300A62F100AA3FB7 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417A300A62F100AA3FB7 /* popup.html */; };
+		50AB4189300A62F100AA3FB7 /* icon48.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417B300A62F100AA3FB7 /* icon48.png */; };
+		50AB418A300A62F100AA3FB7 /* icon512.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417C300A62F100AA3FB7 /* icon512.png */; };
+		50AB418B300A62F100AA3FB7 /* icon128.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417D300A62F100AA3FB7 /* icon128.png */; };
+		50AB418C300A62F100AA3FB7 /* v.js in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417E300A62F100AA3FB7 /* v.js */; };
+		50AB418D300A62F100AA3FB7 /* v.css in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417F300A62F100AA3FB7 /* v.css */; };
+		50AB418E300A62F100AA3FB7 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4180300A62F100AA3FB7 /* manifest.json */; };
+		50AB418F300A62F100AA3FB7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4181300A62F100AA3FB7 /* README.txt */; };
+		50AB4190300A62F100AA3FB7 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4182300A62F100AA3FB7 /* content.js */; };
+		50AB4191300A62F100AA3FB7 /* dtu.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4183300A62F100AA3FB7 /* dtu.png */; };
+		50AB4191300A62F100AA3FB8 /* pen.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4183300A62F100AA3FB8 /* pen.png */; };
+		50AB4191300A62F100AA3FB9 /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4183300A62F100AA3FB9 /* book.png */; };
+		50AB4192300A62F100AA3FB7 /* icon32.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4184300A62F100AA3FB7 /* icon32.png */; };
+		50AB4193300A62F100AA3FB7 /* icon16.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4177300A62F100AA3FB7 /* icon16.png */; };
+		50AB4194300A62F100AA3FB7 /* bypass.js in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4178300A62F100AA3FB7 /* bypass.js */; };
+		50AB4195300A62F100AA3FB7 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4179300A62F100AA3FB7 /* background.js */; };
+		50AB4196300A62F100AA3FB7 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417A300A62F100AA3FB7 /* popup.html */; };
+		50AB4197300A62F100AA3FB7 /* icon48.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417B300A62F100AA3FB7 /* icon48.png */; };
+		50AB4198300A62F100AA3FB7 /* icon512.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417C300A62F100AA3FB7 /* icon512.png */; };
+		50AB4199300A62F100AA3FB7 /* icon128.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417D300A62F100AA3FB7 /* icon128.png */; };
+		50AB419A300A62F100AA3FB7 /* v.js in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417E300A62F100AA3FB7 /* v.js */; };
+		50AB419B300A62F100AA3FB7 /* v.css in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417F300A62F100AA3FB7 /* v.css */; };
+		50AB419C300A62F100AA3FB7 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4180300A62F100AA3FB7 /* manifest.json */; };
+		50AB419D300A62F100AA3FB7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4181300A62F100AA3FB7 /* README.txt */; };
+		50AB419E300A62F100AA3FB7 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4182300A62F100AA3FB7 /* content.js */; };
+		50AB419F300A62F100AA3FB7 /* dtu.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4183300A62F100AA3FB7 /* dtu.png */; };
+		50AB419F300A62F100AA3FB8 /* pen.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4183300A62F100AA3FB8 /* pen.png */; };
+		50AB419F300A62F100AA3FB9 /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4183300A62F100AA3FB9 /* book.png */; };
+		50AB41A0300A62F100AA3FB7 /* icon32.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4184300A62F100AA3FB7 /* icon32.png */; };
+		50AB4191300A62F100AA3FBA /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4183300A62F100AA3FBA /* logo.png */; };
+		50AB419F300A62F100AA3FBA /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4183300A62F100AA3FBA /* logo.png */; };
+		50AB41C0300A62F100AA3FB7 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417A300A62F100AA3FB7 /* popup.html */; };
+		50AB41C1300A62F100AA3FB7 /* v.js in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417E300A62F100AA3FB7 /* v.js */; };
+		50AB41C2300A62F100AA3FB7 /* v.css in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417F300A62F100AA3FB7 /* v.css */; };
+		50AB41C3300A62F100AA3FB7 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4183300A62F100AA3FBA /* logo.png */; };
+		50AB41C4300A62F100AA3FB7 /* dtu.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4183300A62F100AA3FB7 /* dtu.png */; };
+		50AB41C5300A62F100AA3FB7 /* pen.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4183300A62F100AA3FB8 /* pen.png */; };
+		50AB41C6300A62F100AA3FB7 /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4183300A62F100AA3FB9 /* book.png */; };
+		50AB41C7300A62F100AA3FB7 /* icon16.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4177300A62F100AA3FB7 /* icon16.png */; };
+		50AB41C8300A62F100AA3FB7 /* icon32.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4184300A62F100AA3FB7 /* icon32.png */; };
+		50AB41C9300A62F100AA3FB7 /* icon48.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417B300A62F100AA3FB7 /* icon48.png */; };
+		50AB41CA300A62F100AA3FB7 /* icon128.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417D300A62F100AA3FB7 /* icon128.png */; };
+		50AB41CB300A62F100AA3FB7 /* icon512.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417C300A62F100AA3FB7 /* icon512.png */; };
+		50AB41D0300A62F100AA3FB7 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417A300A62F100AA3FB7 /* popup.html */; };
+		50AB41D1300A62F100AA3FB7 /* v.js in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417E300A62F100AA3FB7 /* v.js */; };
+		50AB41D2300A62F100AA3FB7 /* v.css in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417F300A62F100AA3FB7 /* v.css */; };
+		50AB41D3300A62F100AA3FB7 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4183300A62F100AA3FBA /* logo.png */; };
+		50AB41D4300A62F100AA3FB7 /* dtu.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4183300A62F100AA3FB7 /* dtu.png */; };
+		50AB41D5300A62F100AA3FB7 /* pen.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4183300A62F100AA3FB8 /* pen.png */; };
+		50AB41D6300A62F100AA3FB7 /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4183300A62F100AA3FB9 /* book.png */; };
+		50AB41D7300A62F100AA3FB7 /* icon16.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4177300A62F100AA3FB7 /* icon16.png */; };
+		50AB41D8300A62F100AA3FB7 /* icon32.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB4184300A62F100AA3FB7 /* icon32.png */; };
+		50AB41D9300A62F100AA3FB7 /* icon48.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417B300A62F100AA3FB7 /* icon48.png */; };
+		50AB41DA300A62F100AA3FB7 /* icon128.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417D300A62F100AA3FB7 /* icon128.png */; };
+		50AB41DB300A62F100AA3FB7 /* icon512.png in Resources */ = {isa = PBXBuildFile; fileRef = 50AB417C300A62F100AA3FB7 /* icon512.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		50AB414A300A62F000AA3FB7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50AB4117300A62EF00AA3FB7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50AB4147300A62F000AA3FB7;
+			remoteInfo = "Hieu Extension pro Extension (iOS)";
+		};
+		50AB4154300A62F000AA3FB7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50AB4117300A62EF00AA3FB7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50AB4151300A62F000AA3FB7;
+			remoteInfo = "Hieu Extension pro Extension (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		50AB416B300A62F000AA3FB7 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				50AB4149300A62F000AA3FB7 /* Hieu Extension pro Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50AB4172300A62F000AA3FB7 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				50AB4153300A62F000AA3FB7 /* Hieu Extension pro Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		50AB411E300A62EF00AA3FB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/Main.html; sourceTree = "<group>"; };
+		50AB411F300A62EF00AA3FB7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		50AB4120300A62EF00AA3FB7 /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
+		50AB4121300A62EF00AA3FB7 /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
+		50AB4122300A62EF00AA3FB7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		50AB4123300A62F000AA3FB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		50AB4125300A62F000AA3FB7 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		50AB412A300A62F000AA3FB7 /* Hieu Extension pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hieu Extension pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50AB412D300A62F000AA3FB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		50AB412F300A62F000AA3FB7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		50AB4132300A62F000AA3FB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		50AB4135300A62F000AA3FB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		50AB4137300A62F000AA3FB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50AB413C300A62F000AA3FB7 /* Hieu Extension pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hieu Extension pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50AB413E300A62F000AA3FB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		50AB4141300A62F000AA3FB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		50AB4143300A62F000AA3FB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50AB4148300A62F000AA3FB7 /* Hieu Extension pro Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Hieu Extension pro Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50AB414D300A62F000AA3FB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50AB4152300A62F000AA3FB7 /* Hieu Extension pro Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Hieu Extension pro Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50AB4157300A62F000AA3FB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50AB4177300A62F100AA3FB7 /* icon16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon16.png; sourceTree = "<group>"; };
+		50AB4178300A62F100AA3FB7 /* bypass.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = bypass.js; sourceTree = "<group>"; };
+		50AB4179300A62F100AA3FB7 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
+		50AB417A300A62F100AA3FB7 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
+		50AB417B300A62F100AA3FB7 /* icon48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon48.png; sourceTree = "<group>"; };
+		50AB417C300A62F100AA3FB7 /* icon512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon512.png; sourceTree = "<group>"; };
+		50AB417D300A62F100AA3FB7 /* icon128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon128.png; sourceTree = "<group>"; };
+		50AB417E300A62F100AA3FB7 /* v.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = v.js; sourceTree = "<group>"; };
+		50AB417F300A62F100AA3FB7 /* v.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = v.css; sourceTree = "<group>"; };
+		50AB4180300A62F100AA3FB7 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		50AB4181300A62F100AA3FB7 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		50AB4182300A62F100AA3FB7 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
+		50AB4183300A62F100AA3FB7 /* dtu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dtu.png; sourceTree = "<group>"; };
+		50AB4183300A62F100AA3FB8 /* pen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pen.png; sourceTree = "<group>"; };
+		50AB4183300A62F100AA3FB9 /* book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book.png; sourceTree = "<group>"; };
+		50AB4184300A62F100AA3FB7 /* icon32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon32.png; sourceTree = "<group>"; };
+		50AB4183300A62F100AA3FBA /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		50AB4127300A62F000AA3FB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50AB4139300A62F000AA3FB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50AB4145300A62F000AA3FB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50AB414F300A62F000AA3FB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		50AB4116300A62EF00AA3FB7 = {
+			isa = PBXGroup;
+			children = (
+				50AB411B300A62EF00AA3FB7 /* Shared (App) */,
+				50AB4124300A62F000AA3FB7 /* Shared (Extension) */,
+				50AB412C300A62F000AA3FB7 /* iOS (App) */,
+				50AB413D300A62F000AA3FB7 /* macOS (App) */,
+				50AB414C300A62F000AA3FB7 /* iOS (Extension) */,
+				50AB4156300A62F000AA3FB7 /* macOS (Extension) */,
+				50AB412B300A62F000AA3FB7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		50AB411B300A62EF00AA3FB7 /* Shared (App) */ = {
+			isa = PBXGroup;
+			children = (
+				50AB4122300A62EF00AA3FB7 /* ViewController.swift */,
+				50AB4123300A62F000AA3FB7 /* Assets.xcassets */,
+				50AB411C300A62EF00AA3FB7 /* Resources */,
+			);
+			path = "Shared (App)";
+			sourceTree = "<group>";
+		};
+		50AB411C300A62EF00AA3FB7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				50AB411D300A62EF00AA3FB7 /* Main.html */,
+				50AB411F300A62EF00AA3FB7 /* Icon.png */,
+				50AB4120300A62EF00AA3FB7 /* Style.css */,
+				50AB4121300A62EF00AA3FB7 /* Script.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		50AB4124300A62F000AA3FB7 /* Shared (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				50AB4176300A62F100AA3FB7 /* Resources */,
+				50AB4125300A62F000AA3FB7 /* SafariWebExtensionHandler.swift */,
+			);
+			path = "Shared (Extension)";
+			sourceTree = "<group>";
+		};
+		50AB412B300A62F000AA3FB7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50AB412A300A62F000AA3FB7 /* Hieu Extension pro.app */,
+				50AB413C300A62F000AA3FB7 /* Hieu Extension pro.app */,
+				50AB4148300A62F000AA3FB7 /* Hieu Extension pro Extension.appex */,
+				50AB4152300A62F000AA3FB7 /* Hieu Extension pro Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		50AB412C300A62F000AA3FB7 /* iOS (App) */ = {
+			isa = PBXGroup;
+			children = (
+				50AB412D300A62F000AA3FB7 /* AppDelegate.swift */,
+				50AB412F300A62F000AA3FB7 /* SceneDelegate.swift */,
+				50AB4131300A62F000AA3FB7 /* LaunchScreen.storyboard */,
+				50AB4134300A62F000AA3FB7 /* Main.storyboard */,
+				50AB4137300A62F000AA3FB7 /* Info.plist */,
+			);
+			path = "iOS (App)";
+			sourceTree = "<group>";
+		};
+		50AB413D300A62F000AA3FB7 /* macOS (App) */ = {
+			isa = PBXGroup;
+			children = (
+				50AB413E300A62F000AA3FB7 /* AppDelegate.swift */,
+				50AB4140300A62F000AA3FB7 /* Main.storyboard */,
+				50AB4143300A62F000AA3FB7 /* Info.plist */,
+			);
+			path = "macOS (App)";
+			sourceTree = "<group>";
+		};
+		50AB414C300A62F000AA3FB7 /* iOS (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				50AB414D300A62F000AA3FB7 /* Info.plist */,
+			);
+			path = "iOS (Extension)";
+			sourceTree = "<group>";
+		};
+		50AB4156300A62F000AA3FB7 /* macOS (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				50AB4157300A62F000AA3FB7 /* Info.plist */,
+			);
+			path = "macOS (Extension)";
+			sourceTree = "<group>";
+		};
+		50AB4176300A62F100AA3FB7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				50AB4177300A62F100AA3FB7 /* icon16.png */,
+				50AB4178300A62F100AA3FB7 /* bypass.js */,
+				50AB4179300A62F100AA3FB7 /* background.js */,
+				50AB417A300A62F100AA3FB7 /* popup.html */,
+				50AB417B300A62F100AA3FB7 /* icon48.png */,
+				50AB417C300A62F100AA3FB7 /* icon512.png */,
+				50AB417D300A62F100AA3FB7 /* icon128.png */,
+				50AB417E300A62F100AA3FB7 /* v.js */,
+				50AB417F300A62F100AA3FB7 /* v.css */,
+				50AB4180300A62F100AA3FB7 /* manifest.json */,
+				50AB4181300A62F100AA3FB7 /* README.txt */,
+				50AB4182300A62F100AA3FB7 /* content.js */,
+				50AB4183300A62F100AA3FB7 /* dtu.png */,
+				50AB4183300A62F100AA3FB8 /* pen.png */,
+				50AB4183300A62F100AA3FB9 /* book.png */,
+				50AB4184300A62F100AA3FB7 /* icon32.png */,
+				50AB4183300A62F100AA3FBA /* logo.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		50AB4129300A62F000AA3FB7 /* Hieu Extension pro (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50AB416C300A62F000AA3FB7 /* Build configuration list for PBXNativeTarget "Hieu Extension pro (iOS)" */;
+			buildPhases = (
+				50AB4126300A62F000AA3FB7 /* Sources */,
+				50AB4127300A62F000AA3FB7 /* Frameworks */,
+				50AB4128300A62F000AA3FB7 /* Resources */,
+				50AB416B300A62F000AA3FB7 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				50AB414B300A62F000AA3FB7 /* PBXTargetDependency */,
+			);
+			name = "Hieu Extension pro (iOS)";
+			packageProductDependencies = (
+			);
+			productName = "Hieu Extension pro (iOS)";
+			productReference = 50AB412A300A62F000AA3FB7 /* Hieu Extension pro.app */;
+			productType = "com.apple.product-type.application";
+		};
+		50AB413B300A62F000AA3FB7 /* Hieu Extension pro (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50AB4173300A62F000AA3FB7 /* Build configuration list for PBXNativeTarget "Hieu Extension pro (macOS)" */;
+			buildPhases = (
+				50AB4138300A62F000AA3FB7 /* Sources */,
+				50AB4139300A62F000AA3FB7 /* Frameworks */,
+				50AB413A300A62F000AA3FB7 /* Resources */,
+				50AB4172300A62F000AA3FB7 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				50AB4155300A62F000AA3FB7 /* PBXTargetDependency */,
+			);
+			name = "Hieu Extension pro (macOS)";
+			packageProductDependencies = (
+			);
+			productName = "Hieu Extension pro (macOS)";
+			productReference = 50AB413C300A62F000AA3FB7 /* Hieu Extension pro.app */;
+			productType = "com.apple.product-type.application";
+		};
+		50AB4147300A62F000AA3FB7 /* Hieu Extension pro Extension (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50AB4168300A62F000AA3FB7 /* Build configuration list for PBXNativeTarget "Hieu Extension pro Extension (iOS)" */;
+			buildPhases = (
+				50AB4144300A62F000AA3FB7 /* Sources */,
+				50AB4145300A62F000AA3FB7 /* Frameworks */,
+				50AB4146300A62F000AA3FB7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Hieu Extension pro Extension (iOS)";
+			packageProductDependencies = (
+			);
+			productName = "Hieu Extension pro Extension (iOS)";
+			productReference = 50AB4148300A62F000AA3FB7 /* Hieu Extension pro Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		50AB4151300A62F000AA3FB7 /* Hieu Extension pro Extension (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50AB416F300A62F000AA3FB7 /* Build configuration list for PBXNativeTarget "Hieu Extension pro Extension (macOS)" */;
+			buildPhases = (
+				50AB414E300A62F000AA3FB7 /* Sources */,
+				50AB414F300A62F000AA3FB7 /* Frameworks */,
+				50AB4150300A62F000AA3FB7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Hieu Extension pro Extension (macOS)";
+			packageProductDependencies = (
+			);
+			productName = "Hieu Extension pro Extension (macOS)";
+			productReference = 50AB4152300A62F000AA3FB7 /* Hieu Extension pro Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		50AB4117300A62EF00AA3FB7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2660;
+				LastUpgradeCheck = 2660;
+				TargetAttributes = {
+					50AB4129300A62F000AA3FB7 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					50AB413B300A62F000AA3FB7 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					50AB4147300A62F000AA3FB7 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					50AB4151300A62F000AA3FB7 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+				};
+			};
+			buildConfigurationList = 50AB411A300A62EF00AA3FB7 /* Build configuration list for PBXProject "Hieu Extension pro" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 50AB4116300A62EF00AA3FB7;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 50AB412B300A62F000AA3FB7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				50AB4129300A62F000AA3FB7 /* Hieu Extension pro (iOS) */,
+				50AB413B300A62F000AA3FB7 /* Hieu Extension pro (macOS) */,
+				50AB4147300A62F000AA3FB7 /* Hieu Extension pro Extension (iOS) */,
+				50AB4151300A62F000AA3FB7 /* Hieu Extension pro Extension (macOS) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		50AB4128300A62F000AA3FB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50AB415A300A62F000AA3FB7 /* Icon.png in Resources */,
+				50AB4133300A62F000AA3FB7 /* LaunchScreen.storyboard in Resources */,
+				50AB4158300A62F000AA3FB7 /* Main.html in Resources */,
+				50AB415E300A62F000AA3FB7 /* Script.js in Resources */,
+				50AB4162300A62F000AA3FB7 /* Assets.xcassets in Resources */,
+				50AB4136300A62F000AA3FB7 /* Main.storyboard in Resources */,
+				50AB415C300A62F000AA3FB7 /* Style.css in Resources */,
+				50AB41C0300A62F100AA3FB7 /* popup.html in Resources */,
+				50AB41C1300A62F100AA3FB7 /* v.js in Resources */,
+				50AB41C2300A62F100AA3FB7 /* v.css in Resources */,
+				50AB41C3300A62F100AA3FB7 /* logo.png in Resources */,
+				50AB41C4300A62F100AA3FB7 /* dtu.png in Resources */,
+				50AB41C5300A62F100AA3FB7 /* pen.png in Resources */,
+				50AB41C6300A62F100AA3FB7 /* book.png in Resources */,
+				50AB41C7300A62F100AA3FB7 /* icon16.png in Resources */,
+				50AB41C8300A62F100AA3FB7 /* icon32.png in Resources */,
+				50AB41C9300A62F100AA3FB7 /* icon48.png in Resources */,
+				50AB41CA300A62F100AA3FB7 /* icon128.png in Resources */,
+				50AB41CB300A62F100AA3FB7 /* icon512.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50AB413A300A62F000AA3FB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50AB415B300A62F000AA3FB7 /* Icon.png in Resources */,
+				50AB415D300A62F000AA3FB7 /* Style.css in Resources */,
+				50AB4142300A62F000AA3FB7 /* Main.storyboard in Resources */,
+				50AB415F300A62F000AA3FB7 /* Script.js in Resources */,
+				50AB4163300A62F000AA3FB7 /* Assets.xcassets in Resources */,
+				50AB4159300A62F000AA3FB7 /* Main.html in Resources */,
+				50AB41D0300A62F100AA3FB7 /* popup.html in Resources */,
+				50AB41D1300A62F100AA3FB7 /* v.js in Resources */,
+				50AB41D2300A62F100AA3FB7 /* v.css in Resources */,
+				50AB41D3300A62F100AA3FB7 /* logo.png in Resources */,
+				50AB41D4300A62F100AA3FB7 /* dtu.png in Resources */,
+				50AB41D5300A62F100AA3FB7 /* pen.png in Resources */,
+				50AB41D6300A62F100AA3FB7 /* book.png in Resources */,
+				50AB41D7300A62F100AA3FB7 /* icon16.png in Resources */,
+				50AB41D8300A62F100AA3FB7 /* icon32.png in Resources */,
+				50AB41D9300A62F100AA3FB7 /* icon48.png in Resources */,
+				50AB41DA300A62F100AA3FB7 /* icon128.png in Resources */,
+				50AB41DB300A62F100AA3FB7 /* icon512.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50AB4146300A62F000AA3FB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50AB419E300A62F100AA3FB7 /* content.js in Resources */,
+				50AB419B300A62F100AA3FB7 /* v.css in Resources */,
+				50AB4194300A62F100AA3FB7 /* bypass.js in Resources */,
+				50AB419D300A62F100AA3FB7 /* README.txt in Resources */,
+				50AB419C300A62F100AA3FB7 /* manifest.json in Resources */,
+				50AB4196300A62F100AA3FB7 /* popup.html in Resources */,
+				50AB4195300A62F100AA3FB7 /* background.js in Resources */,
+				50AB4193300A62F100AA3FB7 /* icon16.png in Resources */,
+				50AB4197300A62F100AA3FB7 /* icon48.png in Resources */,
+				50AB41A0300A62F100AA3FB7 /* icon32.png in Resources */,
+				50AB419A300A62F100AA3FB7 /* v.js in Resources */,
+				50AB4198300A62F100AA3FB7 /* icon512.png in Resources */,
+				50AB419F300A62F100AA3FB7 /* dtu.png in Resources */,
+				50AB419F300A62F100AA3FB8 /* pen.png in Resources */,
+				50AB419F300A62F100AA3FB9 /* book.png in Resources */,
+				50AB4199300A62F100AA3FB7 /* icon128.png in Resources */,
+				50AB419F300A62F100AA3FBA /* logo.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50AB4150300A62F000AA3FB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50AB4190300A62F100AA3FB7 /* content.js in Resources */,
+				50AB418D300A62F100AA3FB7 /* v.css in Resources */,
+				50AB4186300A62F100AA3FB7 /* bypass.js in Resources */,
+				50AB418F300A62F100AA3FB7 /* README.txt in Resources */,
+				50AB418E300A62F100AA3FB7 /* manifest.json in Resources */,
+				50AB4188300A62F100AA3FB7 /* popup.html in Resources */,
+				50AB4187300A62F100AA3FB7 /* background.js in Resources */,
+				50AB4185300A62F100AA3FB7 /* icon16.png in Resources */,
+				50AB4189300A62F100AA3FB7 /* icon48.png in Resources */,
+				50AB4192300A62F100AA3FB7 /* icon32.png in Resources */,
+				50AB418C300A62F100AA3FB7 /* v.js in Resources */,
+				50AB418A300A62F100AA3FB7 /* icon512.png in Resources */,
+				50AB4191300A62F100AA3FB7 /* dtu.png in Resources */,
+				50AB4191300A62F100AA3FB8 /* pen.png in Resources */,
+				50AB4191300A62F100AA3FB9 /* book.png in Resources */,
+				50AB418B300A62F100AA3FB7 /* icon128.png in Resources */,
+				50AB4191300A62F100AA3FBA /* logo.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		50AB4126300A62F000AA3FB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50AB4160300A62F000AA3FB7 /* ViewController.swift in Sources */,
+				50AB412E300A62F000AA3FB7 /* AppDelegate.swift in Sources */,
+				50AB4130300A62F000AA3FB7 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50AB4138300A62F000AA3FB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50AB4161300A62F000AA3FB7 /* ViewController.swift in Sources */,
+				50AB413F300A62F000AA3FB7 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50AB4144300A62F000AA3FB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50AB4164300A62F000AA3FB7 /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50AB414E300A62F000AA3FB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50AB4165300A62F000AA3FB7 /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		50AB414B300A62F000AA3FB7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50AB4147300A62F000AA3FB7 /* Hieu Extension pro Extension (iOS) */;
+			targetProxy = 50AB414A300A62F000AA3FB7 /* PBXContainerItemProxy */;
+		};
+		50AB4155300A62F000AA3FB7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50AB4151300A62F000AA3FB7 /* Hieu Extension pro Extension (macOS) */;
+			targetProxy = 50AB4154300A62F000AA3FB7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		50AB411D300A62EF00AA3FB7 /* Main.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50AB411E300A62EF00AA3FB7 /* Base */,
+			);
+			name = Main.html;
+			sourceTree = "<group>";
+		};
+		50AB4131300A62F000AA3FB7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50AB4132300A62F000AA3FB7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		50AB4134300A62F000AA3FB7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50AB4135300A62F000AA3FB7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		50AB4140300A62F000AA3FB7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50AB4141300A62F000AA3FB7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		50AB4166300A62F000AA3FB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		50AB4167300A62F000AA3FB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		50AB4169300A62F000AA3FB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4SUY96Q9HP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Hieu Extension pro Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourCompany.Hieu-Extension-pro.Extension";
+				PRODUCT_NAME = "Hieu Extension pro Extension";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		50AB416A300A62F000AA3FB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4SUY96Q9HP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Hieu Extension pro Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourCompany.Hieu-Extension-pro.Extension";
+				PRODUCT_NAME = "Hieu Extension pro Extension";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		50AB416D300A62F000AA3FB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4SUY96Q9HP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Hieu Extension pro";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourCompany.Hieu-Extension-pro";
+				PRODUCT_NAME = "Hieu Extension pro";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		50AB416E300A62F000AA3FB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4SUY96Q9HP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Hieu Extension pro";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourCompany.Hieu-Extension-pro";
+				PRODUCT_NAME = "Hieu Extension pro";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		50AB4170300A62F000AA3FB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4SUY96Q9HP;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Hieu Extension pro Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourCompany.Hieu-Extension-pro.Extension";
+				PRODUCT_NAME = "Hieu Extension pro Extension";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		50AB4171300A62F000AA3FB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4SUY96Q9HP;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Hieu Extension pro Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourCompany.Hieu-Extension-pro.Extension";
+				PRODUCT_NAME = "Hieu Extension pro Extension";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		50AB4174300A62F000AA3FB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4SUY96Q9HP;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Hieu;
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourCompany.Hieu-Extension-pro";
+				PRODUCT_NAME = "Hieu Extension pro";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		50AB4175300A62F000AA3FB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4SUY96Q9HP;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Hieu;
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourCompany.Hieu-Extension-pro";
+				PRODUCT_NAME = "Hieu Extension pro";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		50AB411A300A62EF00AA3FB7 /* Build configuration list for PBXProject "Hieu Extension pro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50AB4166300A62F000AA3FB7 /* Debug */,
+				50AB4167300A62F000AA3FB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50AB4168300A62F000AA3FB7 /* Build configuration list for PBXNativeTarget "Hieu Extension pro Extension (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50AB4169300A62F000AA3FB7 /* Debug */,
+				50AB416A300A62F000AA3FB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50AB416C300A62F000AA3FB7 /* Build configuration list for PBXNativeTarget "Hieu Extension pro (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50AB416D300A62F000AA3FB7 /* Debug */,
+				50AB416E300A62F000AA3FB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50AB416F300A62F000AA3FB7 /* Build configuration list for PBXNativeTarget "Hieu Extension pro Extension (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50AB4170300A62F000AA3FB7 /* Debug */,
+				50AB4171300A62F000AA3FB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50AB4173300A62F000AA3FB7 /* Build configuration list for PBXNativeTarget "Hieu Extension pro (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50AB4174300A62F000AA3FB7 /* Debug */,
+				50AB4175300A62F000AA3FB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 50AB4117300A62EF00AA3FB7 /* Project object */;
+}

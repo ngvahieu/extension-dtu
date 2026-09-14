@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>HieuDev Extension pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="v.css" />
+</head>
+
+<body>
+    <canvas id="bgWaveCanvas" class="bg-wave-canvas"></canvas>
+    <!-- SVG Filter to convert black lines to deep blue (#1C4FA0) and keep white pages white -->
+    <svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
+        <filter id="sakai-blue-filter">
+            <feColorMatrix type="matrix" values="
+                0.89 0.0  0.0  0.0  0.11
+                0.69 0.0  0.0  0.0  0.31
+                0.37 0.0  0.0  0.0  0.63
+                0.0  0.0  0.0  1.0  0.0" />
+        </filter>
+    </svg> 
+    <main class="phone">
+        <section id="menuView" class="view active-view">
+            <section class="header">
+                <h1>
+                    <div class="glow-border-card logo-glow-card">
+                        <div class="glow-conic"></div>
+                        <div class="glow-card-content">
+                            <img src="logo.png" alt="Logo" class="header-logo" />
+                        </div>
+                    </div>
+                    <span class="cyber-glitch" data-text="HieuDev Extension pro">HieuDev Extension pro</span>
+                    <div class="toggle-cont" title="Bật / Tắt Extension">
+                        <input class="toggle-input" id="extensionToggle" name="extensionToggle" type="checkbox" checked />
+                        <label class="toggle-label" for="extensionToggle">
+                            <div class="points_wrapper">
+                                <i class="point"></i>
+                                <i class="point"></i>
+                                <i class="point"></i>
+                                <i class="point"></i>
+                                <i class="point"></i>
+                                <i class="point"></i>
+                            </div>
+                            <div class="cont-label-play">
+                                <span class="label-play"></span>
+                            </div>
+                        </label>
+                    </div>
+                </h1>
+                <p> Tiện ích mở rộng hỗ trợ thao tác học tập nhanh, gọn và tiện hơn trên trình duyệt. </p>
+                <div class="header-actions">
+                    <a class="github-tooltip-btn" href="https://github.com/nguyenhieu195" target="_blank" rel="noopener noreferrer" title="GitHub / nguyenhieu195">
+                        <div class="points_wrapper">
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 15 15" class="github-icon">
+                            <path clip-rule="evenodd" fill-rule="evenodd" fill="currentColor" d="M7.49933 0.25C3.49635 0.25 0.25 3.49593 0.25 7.50024C0.25 10.703 2.32715 13.4206 5.2081 14.3797C5.57084 14.446 5.70302 14.2222 5.70302 14.0299C5.70302 13.8576 5.69679 13.4019 5.69323 12.797C3.67661 13.235 3.25112 11.825 3.25112 11.825C2.92132 10.9874 2.44599 10.7644 2.44599 10.7644C1.78773 10.3149 2.49584 10.3238 2.49584 10.3238C3.22353 10.375 3.60629 11.0711 3.60629 11.0711C4.25298 12.1788 5.30335 11.8588 5.71638 11.6732C5.78225 11.205 5.96962 10.8854 6.17658 10.7043C4.56675 10.5209 2.87415 9.89918 2.87415 7.12104C2.87415 6.32925 3.15677 5.68257 3.62053 5.17563C3.54576 4.99226 3.29697 4.25521 3.69174 3.25691C3.69174 3.25691 4.30015 3.06196 5.68522 3.99973C6.26337 3.83906 6.8838 3.75895 7.50022 3.75583C8.1162 3.75895 8.73619 3.83906 9.31523 3.99973C10.6994 3.06196 11.3069 3.25691 11.3069 3.25691C11.7026 4.25521 11.4538 4.99226 11.3795 5.17563C11.8441 5.68257 12.1245 6.32925 12.1245 7.12104C12.1245 9.9063 10.4292 10.5192 8.81452 10.6985C9.07444 10.9224 9.30633 11.3648 9.30633 12.0413C9.30633 13.0102 9.29742 13.7922 9.29742 14.0299C9.29742 14.2239 9.42828 14.4496 9.79591 14.3788C12.6746 13.4179 14.75 10.7025 14.75 7.50024C14.75 3.49593 11.5036 0.25 7.49933 0.25Z" />
+                        </svg>
+                        <span class="github-tooltip-text">GitHub</span>
+                    </a>
+                    <a class="space-btn mydtu-btn" href="https://mydtu.duytan.edu.vn/Signin.aspx" target="_blank" rel="noopener noreferrer" title="MyDTU">
+                        <div class="space-content">
+                            <img src="dtu.png" alt="DTU" class="space-icon" />
+                            <strong>MYDTU</strong>
+                        </div>
+                        <div class="container-stars">
+                            <div class="stars"></div>
+                        </div>
+                        <div class="glow">
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                        </div>
+                    </a>
+                    <button class="space-btn sakai-btn" id="btnSakaiHeader" type="button" title="Sakai">
+                        <div class="space-content">
+                            <img src="book.png" alt="Sakai" class="space-icon" />
+                            <strong>SAKAI</strong>
+                        </div>
+                        <div class="container-stars">
+                            <div class="stars"></div>
+                        </div>
+                        <div class="glow">
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                        </div>
+                    </button>
+                    <button class="fold-note-btn" id="noteBtn" type="button" title="Ghi chú cá nhân">
+                        <span class="fold"></span>
+                        <div class="points_wrapper">
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                        </div>
+                        <span class="inner">
+                            <img src="pen.png" alt="Ghi chú" class="fold-note-icon" />
+                        </span>
+                    </button>
+                    <button class="setting-btn" id="settingsBtn" type="button" title="Cài đặt">
+                        <div class="points_wrapper">
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                        </div>
+                        <span class="bar bar1"></span>
+                        <span class="bar bar2"></span>
+                        <span class="bar bar1"></span>
+                    </button>
+                </div>
+            </section>
+            <section class="tool-list">
+                <button class="tool purple" data-tool="menu" type="button">
+                    <div class="tool-head">
+                        <h3>Menu</h3>
+                        <div class="num">01</div>
+                    </div>
+                    <p>Truy cập nhanh Bảng điểm, Bảng điểm Cụ thể và Chương trình học.</p>
+                </button>
+                <button class="tool pink" data-tool="courses" type="button">
+                    <div class="tool-head">
+                        <h3>Đăng ký môn học</h3>
+                        <div class="num">02</div>
+                    </div>
+                    <p>Truy cập nhanh trang tìm kiếm và đăng ký môn học.</p>
+                </button>
+                <button class="tool blue" data-tool="exam" type="button">
+                    <div class="tool-head">
+                        <h3>Danh sách thi</h3>
+                        <div class="num">03</div>
+                    </div>
+                    <p>Truy cập nhanh lịch thi, phòng thi và thông tin liên quan.</p>
+                </button>
+                <button class="tool yellow" data-tool="quiz" type="button">
+                    <div class="tool-head">
+                        <h3>Quiz</h3>
+                        <div class="num">04</div>
+                    </div>
+                    <p>Luyện tập trắc nghiệm trực tuyến tại VinkayLearn.</p>
+                </button>
+            </section>
+            <div class="footer"><a href="https://github.com/nguyenhieu195" target="_blank" rel="noopener noreferrer">
+                    @2026
+                    hieudev </a></div>
+        </section>
+        <section id="autoQuizView" class="view tool-view">
+            <div class="mini-header yellow-card"><button class="expand-btn expand-black back-btn" data-back-to-menu type="button" title="Quay lại"><div class="points_wrapper"><i class="point"></i><i class="point"></i><i class="point"></i><i class="point"></i></div><div class="sign"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/></svg></div><div class="text">Back</div></button>
+                <div>
+                    <div class="mini-kicker">Menu · Quiz</div>
+                    <h2>AutoQuiz</h2>
+                    <p>Nhập đáp án dạng 1A 2B 3C rồi chạy trên tab hiện tại.</p>
+                </div>
+            </div>
+            <div class="panel white-card">
+                <div class="floating-input-group textarea-group" style="margin-top:4px">
+                    <textarea id="answersInput" spellcheck="false" placeholder=" " style="min-height:85px"></textarea>
+                    <label for="answersInput">Danh sách đáp án (1A 2B 3C...)</label>
+                </div>
+                <div class="control-row" style="align-items:center;gap:8px">
+                    <div class="floating-input-group" style="margin-bottom:0;flex:1">
+                        <input id="delayInput" type="number" min="0" max="2000" step="10" value="80" placeholder=" " />
+                        <label for="delayInput">Delay (ms)</label>
+                    </div>
+                    <button id="pasteAnswers" class="small-btn blue" type="button" style="height:36px">Dán</button>
+                    <button id="clearAnswers" class="small-btn pink" type="button" style="height:36px">Xoá</button>
+                </div>
+                <button id="runAutoQuiz" class="big-btn yellow" type="button" style="margin-top:8px">Chạy chọn đáp án</button>
+                <div id="autoQuizStatus" class="status-box">Sẵn sàng. Tiện ích chỉ chọn đáp án, không tự nộp bài.</div>
+            </div>
+        </section>
+        <section id="teacherEvalView" class="view tool-view">
+            <div class="mini-header green-card"><button class="expand-btn expand-black back-btn" data-back-to-menu type="button" title="Quay lại"><div class="points_wrapper"><i class="point"></i><i class="point"></i><i class="point"></i><i class="point"></i></div><div class="sign"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/></svg></div><div class="text">Back</div></button>
+                <div>
+                    <div class="mini-kicker">Menu · Form</div>
+                    <h2>Đánh giá Giảng Viên</h2>
+                    <p>Chọn mức 1–6 để điền nhận xét ngẫu nhiên và tick radio.</p>
+                </div>
+            </div>
+            <div class="panel white-card">
+                <div class="level-grid" id="levelGrid"><button class="level yellow" data-level="1"
+                        type="button"><strong>1</strong><span>Tốt</span></button><button class="level green"
+                        data-level="2" type="button"><strong>2</strong><span>Khá</span></button><button
+                        class="level blue" data-level="3" type="button"><strong>3</strong><span>Trung
+                            bình</span></button><button class="level pink" data-level="4"
+                        type="button"><strong>4</strong><span>TB Yếu</span></button><button class="level yellow"
+                        data-level="5" type="button"><strong>5</strong><span>Yếu</span></button><button
+                        class="level green" data-level="6" type="button"><strong>6</strong><span>Kém</span></button>
+                </div><button id="autoTeacherEval" class="big-btn yellow" type="button">Auto Đánh Giá (Mức 1)</button>
+                <div class="note-card"> 4 ô nhận xét R48–R51 sẽ được random theo mức đã chọn. Các nhóm radio R* sẽ được
+                    tích tương ứng. </div>
+                <div id="teacherStatus" class="status-box">Mở trang đánh giá, chọn mức rồi kiểm tra lại trước khi gửi.
+                </div>
+            </div>
+        </section>
+        <section id="settingsView" class="view tool-view">
+            <div class="mini-header blue-card"><button class="expand-btn expand-black back-btn" data-back-to-menu type="button" title="Quay lại"><div class="points_wrapper"><i class="point"></i><i class="point"></i><i class="point"></i><i class="point"></i></div><div class="sign"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/></svg></div><div class="text">Back</div></button>
+                <div>
+                    <div class="mini-kicker">Cài đặt</div>
+                    <h2>Tài khoản MyDTU</h2>
+                    <p>Lưu nhiều tài khoản và chọn tài khoản sử dụng tự động.</p>
+                </div>
+            </div>
+            <div class="panel white-card">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:6px">
+                    <label class="form-label" for="accountSelect" style="margin-bottom:0;flex-grow:1">Chọn tài
+                        khoản</label>
+                    <button id="addAccountBtn" class="expand-btn expand-blue" type="button" title="Thêm tài khoản mới">
+                        <div class="points_wrapper">
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                        </div>
+                        <div class="sign">
+                            <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+                                <path d="M8 2a.75.75 0 0 1 .75.75v4.5h4.5a.75.75 0 0 1 0 1.5h-4.5v4.5a.75.75 0 0 1-1.5 0v-4.5h-4.5a.75.75 0 0 1 0-1.5h4.5v-4.5A.75.75 0 0 1 8 2z"/>
+                            </svg>
+                        </div>
+                        <div class="text">ADD</div>
+                    </button>
+                    <button id="deleteAccountBtn" class="expand-btn expand-red" type="button" title="Xoá tài khoản đang chọn">
+                        <div class="points_wrapper">
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                        </div>
+                        <div class="sign">
+                            <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
+                            </svg>
+                        </div>
+                        <div class="text">Delete</div>
+                    </button>
+                </div>
+                <div class="stylish-select-wrapper" style="margin-bottom:8px">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" class="stylish-select-arrow">
+                        <path stroke-width="4" stroke-linejoin="round" stroke-linecap="round" fill="none" d="M60.7,53.6,50,64.3m0,0L39.3,53.6M50,64.3V35.7m0,46.4A32.1,32.1,0,1,1,82.1,50,32.1,32.1,0,0,1,50,82.1Z" />
+                    </svg>
+                    <select id="accountSelect" class="stylish-select">
+                        <option value="">-- Thêm tài khoản mới --</option>
+                    </select>
+                </div>
+                <div class="floating-input-group" style="margin-top:8px">
+                    <input id="usernameInput" type="text" autocomplete="off" placeholder=" " />
+                    <label for="usernameInput">Mã SV / Tên đăng nhập</label>
+                </div>
+                <div class="floating-input-group password-group" style="margin-top:6px">
+                    <input id="passwordInput" type="password" autocomplete="off" placeholder=" " />
+                    <label for="passwordInput">Mật khẩu</label>
+                    <button id="togglePasswordBtn" class="expand-btn expand-blue" type="button" title="Hiện/Ẩn mật khẩu">
+                        <div class="points_wrapper">
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                        </div>
+                        <div class="sign" id="togglePasswordSign"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/></svg></div><div class="text" id="togglePasswordText">Hiện</div>
+                    </button>
+                </div>
+                <div class="checkbox-wrapper-46">
+                    <input type="checkbox" id="autoReloadInput" class="inp-cbx" />
+                    <label for="autoReloadInput" class="cbx">
+                        <span>
+                            <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                            </svg>
+                        </span>
+                        <span>Tự động reload khi kẹt hoặc lỗi kết nối</span>
+                    </label>
+                </div>
+                <button id="saveCredentials" class="sparkle-btn" type="button" style="margin-top:15px">
+                    <div class="points_wrapper">
+                        <i class="point"></i>
+                        <i class="point"></i>
+                        <i class="point"></i>
+                        <i class="point"></i>
+                        <i class="point"></i>
+                        <i class="point"></i>
+                    </div>
+                    <svg height="18" width="18" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1" class="sparkle">
+                        <path d="M10,21.236,6.755,14.745.264,11.5,6.755,8.255,10,1.764l3.245,6.491L19.736,11.5l-6.491,3.245ZM18,21l1.5,3L21,21l3-1.5L21,18l-1.5-3L18,18l-3,1.5ZM19.333,4.667,20.5,7l1.167-2.333L24,3.5,21.667,2.333,20.5,0,19.333,2.333,17,3.5Z" />
+                    </svg>
+                    <span class="text">Lưu thông tin</span>
+                </button>
+                <div id="settingsStatus" class="status-box">Thông tin đăng nhập được lưu cục bộ trên trình duyệt.</div>
+            </div>
+        </section>
+        <section id="noteView" class="view tool-view">
+            <div class="mini-header pink-card"><button class="expand-btn expand-black back-btn" data-back-to-menu type="button" title="Quay lại"><div class="points_wrapper"><i class="point"></i><i class="point"></i><i class="point"></i><i class="point"></i></div><div class="sign"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/></svg></div><div class="text">Back</div></button>
+                <div>
+                    <div class="mini-kicker">Ghi chú</div>
+                    <h2>Ghi chú cá nhân</h2>
+                    <p>Nội dung ghi chú của bạn được tự động lưu cục bộ trên trình duyệt.</p>
+                </div>
+            </div>
+            <div class="panel white-card">
+                <div class="floating-input-group textarea-group" style="margin-bottom:0">
+                    <textarea id="noteInput" placeholder=" " style="min-height:120px"></textarea>
+                    <label for="noteInput">Nhập nội dung ghi chú cá nhân...</label>
+                </div>
+                <div id="noteStatus" class="status-box ok" style="display:none; margin-top:9px;">Đã lưu tự động!</div>
+            </div>
+        </section>
+        <section id="coursesView" class="view tool-view">
+            <div class="mini-header pink-card"><button class="expand-btn expand-black back-btn" data-back-to-menu type="button" title="Quay lại"><div class="points_wrapper"><i class="point"></i><i class="point"></i><i class="point"></i><i class="point"></i></div><div class="sign"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/></svg></div><div class="text">Back</div></button>
+                <div>
+                    <div class="mini-kicker">02 · Study</div>
+                    <h2>Đăng ký môn học</h2>
+                    <p>Lưu danh sách mã môn học và điền tự động khi đăng ký.</p>
+                </div>
+            </div>
+            <div class="panel white-card">
+                <div id="coursesInputSection">
+                    <div class="floating-input-group textarea-group" style="margin-bottom:6px">
+                        <textarea id="courseCodesTextarea" spellcheck="false" placeholder=" " style="min-height:100px"></textarea>
+                        <label for="courseCodesTextarea">Danh sách mã môn (Mỗi dòng 1 mã, tối đa 10 môn)</label>
+                    </div>
+                    <button id="saveCoursesBtn" class="sparkle-btn sparkle-red" type="button" style="margin-top:12px">
+                        <div class="points_wrapper">
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                        </div>
+                        <svg height="18" width="18" fill="#FFFFFF" viewBox="0 0 24 24" class="sparkle">
+                            <path d="M10,21.236,6.755,14.745.264,11.5,6.755,8.255,10,1.764l3.245,6.491L19.736,11.5l-6.491,3.245ZM18,21l1.5,3L21,21l3-1.5L21,18l-1.5-3L18,18l-3,1.5ZM19.333,4.667,20.5,7l1.167-2.333L24,3.5,21.667,2.333,20.5,0,19.333,2.333,17,3.5Z" />
+                        </svg>
+                        <span class="text">Lưu danh sách môn</span>
+                    </button>
+                    <button id="openRegistrationBtnInput" class="sparkle-btn sparkle-yellow" type="button" style="margin-top:10px">
+                        <div class="points_wrapper">
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                        </div>
+                        <svg height="18" width="18" fill="#FFFFFF" viewBox="0 0 24 24" class="sparkle">
+                            <path d="M10,21.236,6.755,14.745.264,11.5,6.755,8.255,10,1.764l3.245,6.491L19.736,11.5l-6.491,3.245ZM18,21l1.5,3L21,21l3-1.5L21,18l-1.5-3L18,18l-3,1.5ZM19.333,4.667,20.5,7l1.167-2.333L24,3.5,21.667,2.333,20.5,0,19.333,2.333,17,3.5Z" />
+                        </svg>
+                        <span class="text">Mở trang đăng ký môn học</span>
+                    </button>
+                </div>
+                <div id="coursesListSection" style="display:none">
+                    <button id="openRegistrationBtn" class="sparkle-btn sparkle-yellow" type="button" style="margin-bottom:12px">
+                        <div class="points_wrapper">
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                            <i class="point"></i>
+                        </div>
+                        <svg height="18" width="18" fill="#FFFFFF" viewBox="0 0 24 24" class="sparkle">
+                            <path d="M10,21.236,6.755,14.745.264,11.5,6.755,8.255,10,1.764l3.245,6.491L19.736,11.5l-6.491,3.245ZM18,21l1.5,3L21,21l3-1.5L21,18l-1.5-3L18,18l-3,1.5ZM19.333,4.667,20.5,7l1.167-2.333L24,3.5,21.667,2.333,20.5,0,19.333,2.333,17,3.5Z" />
+                        </svg>
+                        <span class="text">Mở trang đăng ký môn học</span>
+                    </button>
+                    <div style="display:flex;justify-content:between;align-items:center;margin-bottom:8px;width:100%">
+                        <label class="form-label" style="margin-bottom:0;flex-grow:1">Danh sách môn học đã
+                            lưu</label><button id="resetCoursesBtn" class="small-btn pink" type="button"
+                            style="height:26px;padding:0 8px;font-size:10px;border-radius:999px">Reset / Nhập
+                            lại</button>
+                    </div>
+                    <div id="coursesGrid" style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px"></div>
+                </div>
+                <div id="coursesStatus" class="status-box">Sẵn sàng.</div>
+            </div>
+        </section>
+        <section id="menuListView" class="view tool-view">
+            <div class="mini-header purple-card"><button class="expand-btn expand-black back-btn" data-back-to-menu type="button" title="Quay lại"><div class="points_wrapper"><i class="point"></i><i class="point"></i><i class="point"></i><i class="point"></i></div><div class="sign"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/></svg></div><div class="text">Back</div></button>
+                <div>
+                    <div class="mini-kicker">01 · Menu</div>
+                    <h2>Menu Nhanh</h2>
+                    <p>Truy cập nhanh các liên kết hệ thống MyDTU.</p>
+                </div>
+            </div>
+            <div class="panel white-card">
+                <div class="tool-list" id="menuToolList" style="margin-bottom:12px">
+                    <button id="btnTranscript" class="tool yellow" type="button">
+                        <div class="tool-head">
+                            <h3>Bảng điểm</h3>
+                            <div class="num">01</div>
+                        </div>
+                        <p>Xem bảng điểm học tập tổng quan.</p>
+                    </button>
+                    <button id="btnDetailedTranscript" class="tool green" type="button">
+                        <div class="tool-head">
+                            <h3>Điểm chi tiết</h3>
+                            <div class="num">02</div>
+                        </div>
+                        <p>Xem điểm thành phần các môn.</p>
+                    </button>
+                    <button id="btnCurriculum" class="tool pink" type="button">
+                        <div class="tool-head">
+                            <h3>Chương trình học</h3>
+                            <div class="num">03</div>
+                        </div>
+                        <p>Lộ trình đào tạo của bạn.</p>
+                    </button>
+                    <button id="btnAutoQuizMenu" class="tool blue" type="button">
+                        <div class="tool-head">
+                            <h3>AutoQuiz</h3>
+                            <div class="num">04</div>
+                        </div>
+                        <p>Hỗ trợ làm bài trắc nghiệm nhanh.</p>
+                    </button>
+                    <button id="btnTeacherEvalMenu" class="tool purple" type="button">
+                        <div class="tool-head">
+                            <h3>Đánh giá GV</h3>
+                            <div class="num">05</div>
+                        </div>
+                        <p>Đánh giá chất lượng giảng dạy.</p>
+                    </button>
+
+                    <!-- Static Add button -->
+                    <button id="btnAddCustomLink" class="tool white-card" type="button"
+                        style="border:1px dashed var(--accent)">
+                        <div class="tool-head">
+                            <span style="font-size:32px;color:var(--accent);font-weight:300">+</span>
+                        </div>
+                    </button>
+                </div>
+                <div id="menuStatus" class="status-box">Sẵn sàng. Tự động đăng nhập nếu chưa đăng nhập.</div>
+            </div>
+        </section>
+
+        <!-- Custom Link Modal -->
+        <div id="customLinkModal" class="modal-overlay" style="display:none">
+            <div class="modal-content panel white-card">
+                <h3 style="font-size:16px;font-weight:600;margin-bottom:12px;color:var(--text-primary)">Thêm liên kết
+                    mới</h3>
+                <div style="display:flex;flex-direction:column;gap:12px">
+                    <div class="floating-input-group" style="margin-bottom:0">
+                        <input type="text" id="customLinkName" placeholder=" " spellcheck="false" />
+                        <label for="customLinkName">Tên liên kết (Ví dụ: Lịch học)</label>
+                    </div>
+                    <div class="floating-input-group" style="margin-bottom:0">
+                        <input type="url" id="customLinkUrl" placeholder=" " spellcheck="false" />
+                        <label for="customLinkUrl">Đường dẫn URL (https://...)</label>
+                    </div>
+                    <div style="display:flex;gap:10px;margin-top:12px">
+                        <button id="btnCancelCustomLink" class="smash-btn smash-red" type="button" style="flex:1">
+                            <span class="smash-overlay"></span>
+                            <span class="smash-highlight"></span>
+                            <span class="smash-content">
+                                <svg class="smash-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                                HỦY
+                            </span>
+                        </button>
+                        <button id="btnSaveCustomLink" class="smash-btn smash-green" type="button" style="flex:1">
+                            <span class="smash-overlay"></span>
+                            <span class="smash-highlight"></span>
+                            <span class="smash-content">
+                                <svg class="smash-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                LƯU
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="v.js"></script>
+</body>
+
+</html>
