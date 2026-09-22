@@ -215,10 +215,10 @@
     let lastSolvedSrc = '';
 
     // Hàm chính xử lý giải captcha và điền vào form
-    async function processCaptcha() {
+    async function processCaptcha(force = false) {
         if (window.location.href.toLowerCase().includes('/signin.aspx') && !loginFormPrepared) {
             console.log('[Hieu Captcha] Chờ chọn loại đăng nhập trước khi xử lý captcha...');
-            return;
+            return null;
         }
 
         const imgCaptcha = document.querySelector('img[src*="CaptchaImage.axd"], img[id*="CaptchaImage" i], img[src*="captcha" i], #loadCaptchaHere img');
@@ -227,22 +227,22 @@
         console.log('[Hieu Captcha] Đang quét phần tử... imgCaptcha:', imgCaptcha ? 'Tìm thấy' : 'Không tìm thấy', '| inputCaptcha:', inputCaptcha ? 'Tìm thấy' : 'Không tìm thấy');
 
         if (!imgCaptcha || !inputCaptcha) {
-            return;
+            return null;
         }
 
         if (!imgCaptcha.complete || imgCaptcha.naturalWidth === 0) {
             console.log('[Hieu Captcha] Ảnh captcha chưa tải xong, đợi sự kiện load...');
-            imgCaptcha.addEventListener('load', () => processCaptcha(), { once: true });
-            return;
+            imgCaptcha.addEventListener('load', () => processCaptcha(force), { once: true });
+            return null;
         }
 
         if (imgCaptcha.dataset.solving === 'true') {
             console.log('[Hieu Captcha] Tiến trình giải trước đó đang chạy, bỏ qua.');
-            return;
+            return null;
         }
-        if (lastSolvedSrc === imgCaptcha.src) {
+        if (!force && lastSolvedSrc === imgCaptcha.src && inputCaptcha.value.trim().length === 4) {
             console.log('[Hieu Captcha] Ảnh này đã được giải thành công trước đó, bỏ qua.');
-            return;
+            return inputCaptcha.value.trim();
         }
 
         imgCaptcha.dataset.solving = 'true';
@@ -252,7 +252,7 @@
         if (!base64Image) {
             imgCaptcha.dataset.solving = 'false';
             console.error('[Hieu Captcha] Không lấy được Base64 ảnh.');
-            return;
+            return null;
         }
 
         const originalPlaceholder = inputCaptcha.placeholder;
@@ -271,6 +271,9 @@
             inputCaptcha.value = captchaResult;
             inputCaptcha.dispatchEvent(new Event('input', { bubbles: true }));
             inputCaptcha.dispatchEvent(new Event('change', { bubbles: true }));
+            if (window.location.href.toLowerCase().includes('/signin.aspx')) {
+                captchaRefreshRequired = false;
+            }
             console.log('[Hieu Captcha] Đã điền kết quả vào ô nhập.');
 
             setTimeout(() => {
@@ -287,9 +290,12 @@
                     }
                 }
             }, 300);
+
+            return captchaResult;
         } else {
             console.log('[Hieu Captcha] Giải thất bại hoặc lỗi kết nối API.');
             inputCaptcha.placeholder = 'Lỗi giải Captcha';
+            return null;
         }
     }
 
@@ -536,7 +542,7 @@
         return false;
     }
 
-    const LOGIN_TIMEOUT_MS = 5000;
+    const LOGIN_TIMEOUT_MS = 25000;
     let loginPageWatchdogTimer = null;
 
     function getLoggedInUserName() {
@@ -579,33 +585,8 @@
     }
 
     function armLoginWatchdog(timeoutMs, reason) {
-        if (window !== window.top || !window.location.href.toLowerCase().includes('/signin.aspx')) {
-            return;
-        }
-        if (getLoggedInUserName()) {
-            cancelBackgroundLoginWatchdog();
-            return;
-        }
-
-        console.log(`[Hieu Pro] Bắt đầu watchdog ${timeoutMs / 1000} giây (${reason}).`);
-        if (loginPageWatchdogTimer !== null) {
-            clearTimeout(loginPageWatchdogTimer);
-        }
-        loginPageWatchdogTimer = window.setTimeout(() => {
-            loginPageWatchdogTimer = null;
-            if (!window.location.href.toLowerCase().includes('/signin.aspx') || getLoggedInUserName()) {
-                cancelBackgroundLoginWatchdog();
-                return;
-            }
-
-            console.log('[Hieu Pro] Watchdog: chưa đăng nhập thành công, tải lại trang.');
-            reloadLoginPageForRetry(0);
-        }, timeoutMs);
-        sendLoginWatchdogMessage('startLoginWatchdog', timeoutMs);
-    }
-
-    function startLoginPageWatchdog() {
-        armLoginWatchdog(LOGIN_TIMEOUT_MS, 'đã vào trang đăng nhập');
+        // Hủy bỏ cơ chế watchdog tự động reload trang khi ở trang đăng nhập
+        cancelBackgroundLoginWatchdog();
     }
 
     function checkLoginWatchdog() {
@@ -625,31 +606,35 @@
             return true;
         }
 
-        const attemptTimeStr = sessionStorage.getItem('hieu_login_attempt');
-        if (!attemptTimeStr) {
-            return false;
-        }
-
-        const attemptTime = parseInt(attemptTimeStr, 10);
-        const elapsed = Number.isFinite(attemptTime) ? Date.now() - attemptTime : LOGIN_TIMEOUT_MS;
-        const remaining = Math.max(0, LOGIN_TIMEOUT_MS - elapsed);
-        sendLoginWatchdogMessage('startLoginWatchdog', remaining);
-
         return false;
     }
 
     let loginFlowRunning = false;
-    let loginRetryScheduled = false;
     let loginSubmitPending = false;
+    let captchaRefreshRequired = false;
     let loginFormPrepared = !window.location.href.toLowerCase().includes('/signin.aspx');
-    let loginSubmissionGuardInstalled = false;
 
     function normalizeLoginMessage(text) {
-        return text
+        return (text || '')
             .normalize('NFC')
             .replace(/\s+/g, ' ')
             .trim()
             .toLocaleLowerCase('vi-VN');
+    }
+
+    const loginErrorPatterns = [
+        'tên đăng nhập hoặc mật khẩu không chính xác',
+        'mã xác nhận không hợp lệ',
+        'mã xác nhận không chính xác',
+        'mã xác thực không hợp lệ',
+        'chưa nhập mật khẩu',
+        'chưa nhập tên đăng nhập'
+    ];
+
+    function isLoginFailureText(text) {
+        if (!text) return false;
+        const norm = normalizeLoginMessage(text);
+        return loginErrorPatterns.some(pattern => norm.includes(pattern));
     }
 
     function setLoginFieldValue(field, value) {
@@ -659,75 +644,58 @@
         field.dispatchEvent(new Event('change', { bubbles: true }));
     }
 
-    function getLoginFieldStatus() {
-        const userField = document.getElementById('txtUser');
-        const passwordField = document.getElementById('txtPass');
-        const captchaField = document.getElementById('txtCaptcha') ||
-                             document.querySelector('input[name="txtCaptcha"], .txtcaptcha');
-        return {
-            hasUser: Boolean(userField && userField.value.trim()),
-            hasPassword: Boolean(passwordField && passwordField.value && passwordField.value !== 'Nhập mật khẩu'),
-            hasCaptcha: Boolean(captchaField && captchaField.value.trim().length === 4)
-        };
-    }
+    const LOGIN_RELOAD_DELAY_MS = 5000;
+    let loginErrorReloading = false;
+    let loginReloadCountdownInterval = null;
+    let loginReloadTimerId = null;
 
-    function isLoginFormComplete() {
-        const status = getLoginFieldStatus();
-        return status.hasUser && status.hasPassword && status.hasCaptcha;
-    }
-
-    function blockIncompleteLoginSubmission(event) {
-        if (!window.location.href.toLowerCase().includes('/signin.aspx') || isLoginFormComplete()) {
-            return false;
-        }
-
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        loginSubmitPending = false;
-        console.log('[Hieu Pro] Đã chặn đăng nhập vì một trong 3 trường còn trống.');
-        processCaptcha();
-        return true;
-    }
-
-    function installLoginSubmissionGuard() {
-        if (loginSubmissionGuardInstalled || !window.location.href.toLowerCase().includes('/signin.aspx')) {
-            return;
-        }
-        loginSubmissionGuardInstalled = true;
-
-        document.addEventListener('click', event => {
-            const target = event.target instanceof Element ? event.target : null;
-            const loginButton = target && target.closest('#btnLogin1, #btnLogin, .btn-responsive');
-            if (loginButton) {
-                blockIncompleteLoginSubmission(event);
-            }
-        }, true);
-
-        document.addEventListener('submit', event => {
-            blockIncompleteLoginSubmission(event);
-        }, true);
-    }
-
-    function clearLoginFields() {
-        setLoginFieldValue(document.getElementById('txtUser'), '');
-        setLoginFieldValue(document.getElementById('txtPass'), '');
-        setLoginFieldValue(document.getElementById('txtCaptcha'), '');
-    }
-
-    function reloadLoginPageForRetry(delayMs = 300) {
-        if (loginRetryScheduled) {
+    function initLoginReloadTimer() {
+        if (!window.location.href.toLowerCase().includes('/signin.aspx')) {
             return;
         }
 
-        loginRetryScheduled = true;
+        loginErrorReloading = false;
+        console.log('[Hieu Pro] ⏳ Cơ chế đếm 5 giây sẵn sàng: Khi đăng nhập thất bại, sẽ giữ thông báo lỗi, đếm 5 giây rồi reload trang và tiếp tục đếm tiếp 5 giây ở lần thử sau.');
+    }
+
+    function reloadLoginPageForRetry(reason) {
+        if (loginErrorReloading) {
+            return;
+        }
+
+        loginErrorReloading = true;
         loginFlowRunning = false;
         loginSubmitPending = false;
         sessionStorage.removeItem('hieu_login_attempt');
         sessionStorage.setItem('hieu_login_retry_pending', 'true');
         cancelBackgroundLoginWatchdog();
-        clearLoginFields();
 
-        setTimeout(() => {
+        let remainingSeconds = 5;
+        console.log(`[Hieu Pro] ⏳ Đăng nhập không thành công (${reason}). Giữ nguyên thông báo lỗi trên màn hình, bắt đầu đếm 5 giây trước khi reload lại trang...`);
+
+        if (loginReloadCountdownInterval) {
+            clearInterval(loginReloadCountdownInterval);
+        }
+        if (loginReloadTimerId) {
+            clearTimeout(loginReloadTimerId);
+        }
+
+        loginReloadCountdownInterval = setInterval(() => {
+            remainingSeconds--;
+            if (remainingSeconds > 0) {
+                console.log(`[Hieu Pro] ⏳ Đếm ngược: Sẽ tự động reload trang sau ${remainingSeconds}s...`);
+            } else {
+                clearInterval(loginReloadCountdownInterval);
+                loginReloadCountdownInterval = null;
+            }
+        }, 1000);
+
+        loginReloadTimerId = setTimeout(() => {
+            if (loginReloadCountdownInterval) {
+                clearInterval(loginReloadCountdownInterval);
+                loginReloadCountdownInterval = null;
+            }
+            console.log('[Hieu Pro] 🔄 Đã đếm đủ 5 giây! Tiến hành reload lại trang để bắt đầu đếm tiếp cho lần thử sau...');
             const currentUrl = new URL(window.location.href);
             const cleanLoginUrl = currentUrl.pathname.toLowerCase().includes('/signin.aspx')
                 ? currentUrl
@@ -735,30 +703,35 @@
             cleanLoginUrl.hash = '';
             cleanLoginUrl.searchParams.set('_hieu_retry', Date.now().toString());
             window.location.replace(cleanLoginUrl.toString());
-        }, delayMs);
+        }, LOGIN_RELOAD_DELAY_MS);
     }
 
-    function checkLoginErrorAndRetry() {
-        if (!window.location.href.toLowerCase().includes('/signin.aspx')) {
+    function handleLoginError(source, errorText) {
+        loginFlowRunning = false;
+        loginSubmitPending = false;
+        cancelBackgroundLoginWatchdog();
+
+        console.log(`[Hieu Pro] Phát hiện thông báo đăng nhập không thành công (${source}): "${errorText}".`);
+        console.log('[Hieu Pro] ⏳ Bắt đầu đếm 5 giây, giữ thông báo lỗi trên màn hình trước khi reload trang...');
+        reloadLoginPageForRetry(source + ': ' + errorText);
+        return true;
+    }
+
+    const handleLoginFailure = handleLoginError;
+
+    function checkLoginError() {
+        if (!window.location.href.toLowerCase().includes('/signin.aspx') || loginErrorReloading) {
             return false;
         }
 
         const lbMessage = document.getElementById('lbMessage');
-        const errorText = lbMessage ? normalizeLoginMessage(lbMessage.textContent || '') : '';
-        // "thông báo." là nội dung giữ chỗ mặc định của trang, không phải lỗi.
-        const ignoredMessages = ['', 'thông báo', 'thông báo.'];
-        const shouldRetry = !ignoredMessages.includes(errorText);
+        const errorText = lbMessage ? lbMessage.textContent.trim() : '';
 
-        if (!shouldRetry) {
-            return false;
+        if (isLoginFailureText(errorText)) {
+            return handleLoginError('lbMessage', errorText);
         }
 
-        if (!loginRetryScheduled) {
-            console.log('[Hieu Pro] Trang đăng nhập hiển thị thông báo, xóa cả 3 trường và tải lại:', lbMessage.textContent.trim());
-            reloadLoginPageForRetry();
-        }
-
-        return true;
+        return false;
     }
 
     function watchLoginErrors() {
@@ -766,16 +739,30 @@
             return;
         }
 
-        const lbMessage = document.getElementById('lbMessage');
-        if (!lbMessage) {
-            return;
+        // Nếu vừa submit đăng nhập từ trang trước dẫn đến postback có lỗi
+        if (sessionStorage.getItem('hieu_login_attempt')) {
+            checkLoginError();
         }
 
-        const observer = new MutationObserver(() => {
-            checkLoginErrorAndRetry();
-        });
-        observer.observe(lbMessage, { childList: true, characterData: true, subtree: true });
-        checkLoginErrorAndRetry();
+        const target = document.body || document.documentElement;
+        if (target) {
+            const observer = new MutationObserver(() => {
+                if (loginSubmitPending || sessionStorage.getItem('hieu_login_attempt')) {
+                    checkLoginError();
+                }
+            });
+            observer.observe(target, { childList: true, characterData: true, subtree: true });
+        }
+
+        const intervalId = setInterval(() => {
+            if (!window.location.href.toLowerCase().includes('/signin.aspx') || loginErrorReloading) {
+                clearInterval(intervalId);
+                return;
+            }
+            if (loginSubmitPending || sessionStorage.getItem('hieu_login_attempt')) {
+                checkLoginError();
+            }
+        }, 1000);
     }
 
     function isSakaiPendingUrl(pendingUrl) {
@@ -817,7 +804,7 @@
         return true;
     }
 
-    function autoLogin() {
+    async function autoLogin() {
         const currentUrl = window.location.href.toLowerCase();
         if (!currentUrl.includes('/signin.aspx')) {
             return;
@@ -827,15 +814,14 @@
         if (sessionStorage.getItem('hieu_login_retry_pending') === 'true' || hasBackgroundRetry) {
             sessionStorage.removeItem('hieu_login_retry_pending');
             sessionStorage.removeItem('hieu_login_attempt');
-            clearLoginFields();
-            console.log('[Hieu Pro] Trang đăng nhập đã tải lại, chuẩn bị nhập lại đủ 3 trường.');
+            console.log('[Hieu Pro] Trang đăng nhập đã tải lại, chuẩn bị tiến hành đăng nhập.');
         }
 
-        if (checkLoginErrorAndRetry() || loginFlowRunning || loginSubmitPending) {
+        if (loginFlowRunning || loginSubmitPending) {
             return;
         }
         
-        chrome.storage.local.get(['myDtuUser', 'myDtuPass', 'pendingRedirectUrl', 'pendingLoginType'], data => {
+        chrome.storage.local.get(['myDtuUser', 'myDtuPass', 'pendingRedirectUrl', 'pendingLoginType'], async data => {
             const user = data.myDtuUser;
             const pass = data.myDtuPass;
             const shouldUseLearning = data.pendingLoginType === 'learning' ||
@@ -861,77 +847,84 @@
             const btnLogin = document.getElementById('btnLogin1') || document.getElementById('btnLogin');
             
             if (!txtUser || !txtPass || !txtCaptcha || !btnLogin) {
-                console.log('[Hieu Pro] Chưa tìm thấy đủ 3 trường đăng nhập hoặc nút đăng nhập, sẽ kiểm tra lại...');
+                console.log('[Hieu Pro] Chưa tìm thấy đủ các phần tử đăng nhập, sẽ thử lại sau...');
                 setTimeout(autoLogin, 500);
                 return;
             }
 
             loginFlowRunning = true;
-            console.log('[Hieu Pro] Bắt đầu nhập và kiểm tra đủ 3 trường đăng nhập...');
+            console.log('[Hieu Pro] Bắt đầu quy trình đăng nhập tuần tự: Tên đăng nhập -> Mật khẩu -> Captcha -> Ấn đăng nhập');
 
-            function verifyAllFieldsAndSubmit() {
-                if (!window.location.href.toLowerCase().includes('/signin.aspx') || loginSubmitPending) {
-                    return;
-                }
+            // Bước 1: Nhập Tên đăng nhập
+            console.log('[Hieu Pro] Bước 1: Nhập Tên đăng nhập');
+            setLoginFieldValue(txtUser, user);
 
-                const currentUser = document.getElementById('txtUser');
-                const currentPass = document.getElementById('txtPass');
-                const currentCaptcha = document.getElementById('txtCaptcha') ||
-                                       document.querySelector('input[name="txtCaptcha"], .txtcaptcha');
-                const currentButton = document.getElementById('btnLogin1') || document.getElementById('btnLogin');
+            await new Promise(resolve => setTimeout(resolve, 300));
 
-                if (!currentUser || !currentPass || !currentCaptcha || !currentButton) {
-                    console.log('[Hieu Pro] Form đăng nhập chưa đủ phần tử, tiếp tục chờ...');
-                    setTimeout(verifyAllFieldsAndSubmit, 500);
-                    return;
-                }
+            // Bước 2: Nhập Mật khẩu
+            console.log('[Hieu Pro] Bước 2: Nhập Mật khẩu');
+            txtPass.removeAttribute('onfocus');
+            txtPass.onfocus = null;
+            setLoginFieldValue(txtPass, pass);
 
-                if (shouldUseLearning) {
-                    selectLearningLoginType();
-                }
+            await new Promise(resolve => setTimeout(resolve, 300));
 
-                let repairedField = false;
-                if (currentUser.value.trim() === '') {
-                    console.log('[Hieu Pro] Tên đăng nhập đang trống, nhập lại...');
-                    setLoginFieldValue(currentUser, user);
-                    repairedField = true;
-                }
-
-                if (currentPass.value === '' || currentPass.value === 'Nhập mật khẩu') {
-                    console.log('[Hieu Pro] Mật khẩu đang trống, nhập lại...');
-                    setLoginFieldValue(currentPass, pass);
-                    repairedField = true;
-                }
-
-                // Safari có thể cập nhật form bất đồng bộ sau sự kiện change.
-                // Nếu vừa sửa trường, đợi một nhịp rồi đọc lại cả 3 trường trước khi submit.
-                if (repairedField) {
-                    setTimeout(verifyAllFieldsAndSubmit, 100);
-                    return;
-                }
-
-                if (currentCaptcha.value.trim().length !== 4) {
-                    console.log('[Hieu Pro] Mã xác nhận chưa đủ 4 ký tự, tiếp tục chờ giải captcha...');
-                    processCaptcha();
-                    setTimeout(verifyAllFieldsAndSubmit, 500);
-                    return;
-                }
-
-                if (!isLoginFormComplete()) {
-                    setTimeout(verifyAllFieldsAndSubmit, 300);
-                    return;
-                }
-
-                loginSubmitPending = true;
-                sessionStorage.setItem('hieu_login_attempt', Date.now().toString());
-                console.log('[Hieu Pro] Đã đủ Tên đăng nhập, Mật khẩu và Mã xác nhận. Tiến hành đăng nhập!');
-                currentButton.click();
+            // Bước 3: Giải và nhập Captcha
+            console.log('[Hieu Pro] Bước 3: Đang giải và nhập Mã xác nhận (Captcha)...');
+            const imgCaptcha = document.querySelector('img[src*="CaptchaImage.axd"], img[id*="CaptchaImage" i], img[src*="captcha" i], #loadCaptchaHere img');
+            if (imgCaptcha && (!imgCaptcha.complete || imgCaptcha.naturalWidth === 0)) {
+                await new Promise(resolve => {
+                    imgCaptcha.addEventListener('load', resolve, { once: true });
+                    setTimeout(resolve, 3000);
+                });
             }
 
-            setLoginFieldValue(txtUser, user);
-            setLoginFieldValue(txtPass, pass);
-            processCaptcha();
-            setTimeout(verifyAllFieldsAndSubmit, 300);
+            let captchaAttempts = 0;
+            while (txtCaptcha.value.trim().length !== 4 && captchaAttempts < 10) {
+                captchaAttempts++;
+                await processCaptcha(true);
+                if (txtCaptcha.value.trim().length === 4) break;
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+
+            if (txtCaptcha.value.trim().length !== 4) {
+                console.warn('[Hieu Pro] Chưa có mã captcha hợp lệ sau các lần thử giải.');
+                loginFlowRunning = false;
+                return;
+            }
+
+            await new Promise(resolve => setTimeout(resolve, 300));
+
+            // Bước 4: Kiểm tra lại toàn bộ và Ấn Đăng nhập
+            console.log('[Hieu Pro] Bước 4: Kiểm tra lại các trường và ấn Đăng nhập');
+            if (shouldUseLearning) {
+                selectLearningLoginType();
+            }
+
+            if (!txtUser.value || txtUser.value.trim() === '') {
+                setLoginFieldValue(txtUser, user);
+            }
+            if (!txtPass.value || txtPass.value === 'Nhập mật khẩu') {
+                txtPass.removeAttribute('onfocus');
+                txtPass.onfocus = null;
+                setLoginFieldValue(txtPass, pass);
+            }
+
+            if (txtUser.value.trim() === '' || txtPass.value === '' || txtCaptcha.value.trim().length !== 4) {
+                console.warn('[Hieu Pro] Không thể đăng nhập vì có trường bị thiếu:', {
+                    hasUser: Boolean(txtUser.value.trim()),
+                    hasPass: Boolean(txtPass.value),
+                    captchaLen: txtCaptcha.value.trim().length
+                });
+                loginFlowRunning = false;
+                return;
+            }
+
+            loginSubmitPending = true;
+            sessionStorage.setItem('hieu_login_attempt', Date.now().toString());
+
+            console.log('[Hieu Pro] Đã hoàn tất 4 bước theo đúng thứ tự. Tiến hành đăng nhập!');
+            btnLogin.click();
         });
     }
 
@@ -986,6 +979,9 @@
     // Lắng nghe sự kiện để kích hoạt
     function init() {
         console.log('[Hieu Captcha] Đang khởi tạo...');
+
+        // Khởi tạo cơ chế đếm 5 giây kể từ khi vào trang đăng nhập
+        initLoginReloadTimer();
         
         // Kiểm tra chuyển hướng pending
         checkPendingRedirect();
@@ -994,7 +990,12 @@
         window.addEventListener('hieu_alert_event', event => {
             const alertMsg = event.detail || '';
             console.log('[Hieu Pro] Nhận thông báo từ trang:', alertMsg);
-            
+
+            if (window.location.href.toLowerCase().includes('/signin.aspx') && isLoginFailureText(alertMsg)) {
+                handleLoginError('alert', alertMsg);
+                return;
+            }
+
             isSubmittingEval = false;
             
             if (alertMsg.includes('xác thực') || alertMsg.includes('xác nhận') || alertMsg.includes('captcha') || alertMsg.includes('không chính xác') || alertMsg.includes('không hợp lệ')) {
@@ -1030,11 +1031,9 @@
             }
         });
         
-        // Tự động đăng nhập
-        installLoginSubmissionGuard();
+        // Tự động đăng nhập & theo dõi lỗi đăng nhập (đếm 5 giây rồi reload lại trang, tiếp tục lặp lại)
         watchLoginErrors();
         autoLogin();
-        startLoginPageWatchdog();
         
         // Tự động chọn năm học và học kỳ nếu đang ở trang chọn học kỳ
         autoSelectSemester();
@@ -1042,39 +1041,41 @@
         // Tự động đánh giá trước (nếu được bật)
         checkAndAutoEvaluate();
 
-        // Tự động giải captcha
-        processCaptcha();
+        // Tự động giải captcha trên các trang khác (trên trang Signin thì autoLogin giải tuần tự ở Bước 3)
+        if (!window.location.href.toLowerCase().includes('/signin.aspx')) {
+            processCaptcha();
 
-        const imgCaptcha = document.querySelector('img[src*="CaptchaImage.axd"], img[id*="CaptchaImage" i], img[src*="captcha" i], #loadCaptchaHere img');
-        if (imgCaptcha) {
-            imgCaptcha.addEventListener('load', () => {
-                console.log('[Hieu Captcha] Captcha reload phát hiện được. Giải ảnh mới...');
-                processCaptcha();
-            });
-        }
+            const imgCaptcha = document.querySelector('img[src*="CaptchaImage.axd"], img[id*="CaptchaImage" i], img[src*="captcha" i], #loadCaptchaHere img');
+            if (imgCaptcha) {
+                imgCaptcha.addEventListener('load', () => {
+                    console.log('[Hieu Captcha] Captcha reload phát hiện được. Giải ảnh mới...');
+                    processCaptcha();
+                });
+            }
 
-        const observer = new MutationObserver((mutations) => {
-            let shouldProcess = false;
-            for (const mutation of mutations) {
-                if (mutation.addedNodes.length) {
-                    for (const node of mutation.addedNodes) {
-                        if (node.nodeType === Node.ELEMENT_NODE) {
-                            if (node.querySelector('img[src*="CaptchaImage.axd"], img[id*="CaptchaImage" i], img[src*="captcha" i], #loadCaptchaHere img') || 
-                                node.matches('img[src*="CaptchaImage.axd"], img[id*="CaptchaImage" i], img[src*="captcha" i], #loadCaptchaHere img')) {
-                                shouldProcess = true;
-                                break;
+            const observer = new MutationObserver((mutations) => {
+                let shouldProcess = false;
+                for (const mutation of mutations) {
+                    if (mutation.addedNodes.length) {
+                        for (const node of mutation.addedNodes) {
+                            if (node.nodeType === Node.ELEMENT_NODE) {
+                                if (node.querySelector('img[src*="CaptchaImage.axd"], img[id*="CaptchaImage" i], img[src*="captcha" i], #loadCaptchaHere img') || 
+                                    node.matches('img[src*="CaptchaImage.axd"], img[id*="CaptchaImage" i], img[src*="captcha" i], #loadCaptchaHere img')) {
+                                    shouldProcess = true;
+                                    break;
+                                }
                             }
                         }
                     }
                 }
-            }
-            if (shouldProcess) {
-                console.log('[Hieu Captcha] Phát hiện phần tử Captcha mới xuất hiện động trong DOM.');
-                processCaptcha();
-            }
-        });
-        
-        observer.observe(document.body, { childList: true, subtree: true });
+                if (shouldProcess) {
+                    console.log('[Hieu Captcha] Phát hiện phần tử Captcha mới xuất hiện động trong DOM.');
+                    processCaptcha();
+                }
+            });
+            
+            observer.observe(document.body, { childList: true, subtree: true });
+        }
     }
 
     function watchRegistrationStatus() {
