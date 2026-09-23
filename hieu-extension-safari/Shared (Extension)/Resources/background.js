@@ -4,6 +4,26 @@
 const API_URL = 'https://vinkaycaptcha.onrender.com/api/solve';
 const loginWatchdogs = new Map();
 
+function isProtectedReloadPage(rawUrl) {
+    if (!rawUrl) return false;
+
+    try {
+        const currentUrl = new URL(rawUrl);
+        const host = currentUrl.hostname.toLowerCase();
+        const path = currentUrl.pathname.toLowerCase();
+
+        const isMyDtuSignedInPage = host === 'mydtu.duytan.edu.vn' &&
+            !path.includes('/signin.aspx');
+
+        const isSakaiPortalPage = host === 'studyresource.duytan.edu.vn' &&
+            (path === '/portal' || path.startsWith('/portal/'));
+
+        return isMyDtuSignedInPage || isSakaiPortalPage;
+    } catch (error) {
+        return false;
+    }
+}
+
 function clearLoginWatchdog(tabId) {
     const timer = loginWatchdogs.get(tabId);
     if (timer) {
@@ -48,10 +68,24 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             ? Math.max(0, Math.min(requestedTimeout, 60000))
             : 5000;
         const loginUrl = request.loginUrl || sender.tab.url;
+        if (isProtectedReloadPage(sender.tab.url) || isProtectedReloadPage(loginUrl)) {
+            clearLoginWatchdog(tabId);
+            sendResponse({ success: true, disabled: true });
+            return false;
+        }
+
         const timer = setTimeout(() => {
-            loginWatchdogs.delete(tabId);
-            console.log('[Hieu Background] Hết thời gian đăng nhập, tải lại tab:', tabId);
-            reloadLoginTab(tabId, loginUrl);
+            chrome.tabs.get(tabId, tab => {
+                if (chrome.runtime.lastError || isProtectedReloadPage(tab && tab.url)) {
+                    clearLoginWatchdog(tabId);
+                    console.log('[Hieu Background] Chỉ hủy watchdog reload; extension vẫn hoạt động:', tab && tab.url);
+                    return;
+                }
+
+                loginWatchdogs.delete(tabId);
+                console.log('[Hieu Background] Hết thời gian đăng nhập, tải lại tab:', tabId);
+                reloadLoginTab(tabId, loginUrl);
+            });
         }, timeoutMs);
         loginWatchdogs.set(tabId, timer);
         sendResponse({ success: true });
@@ -80,11 +114,20 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 image: request.image
             })
         })
-        .then(response => {
+        .then(async response => {
+            const data = await response.json().catch(() => null);
             if (!response.ok) {
+                if (response.status === 400 && data && data.status === 'error') {
+                    console.log('[Hieu Background] API không giải được ảnh captcha, trả về trạng thái retry.');
+                    return {
+                        status: 'retry',
+                        captcha: null,
+                        message: data.message || 'Captcha chưa được giải.'
+                    };
+                }
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            return response.json();
+            return data;
         })
         .then(data => {
             console.log('[Hieu Background] API phản hồi thành công:', data);
@@ -114,4 +157,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 if (chrome.tabs && chrome.tabs.onRemoved) {
     chrome.tabs.onRemoved.addListener(tabId => clearLoginWatchdog(tabId));
+}
+
+if (chrome.tabs && chrome.tabs.onUpdated) {
+    chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+        const updatedUrl = changeInfo.url || (tab && tab.url);
+        if (isProtectedReloadPage(updatedUrl)) {
+            clearLoginWatchdog(tabId);
+            console.log('[Hieu Background] Đã tắt riêng watchdog tự động reload:', updatedUrl);
+        }
+    });
 }

@@ -112,16 +112,60 @@ const CURRICULUM_URL =
   "https://mydtu.duytan.edu.vn/sites/index.aspx?p=home_listcurriculum&functionid=37";
 const SAKAI_URL =
   "https://mydtu.duytan.edu.vn/Elearning.aspx?v=new&t=639200963240176318";
+const MYDTU_URL = "https://mydtu.duytan.edu.vn/";
+function isMydtuUrl(rawUrl) {
+  try {
+    return new URL(rawUrl).hostname.toLowerCase() === "mydtu.duytan.edu.vn";
+  } catch (error) {
+    return false;
+  }
+}
+
+function getActiveTab() {
+  return new Promise((resolve) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      if (chrome.runtime.lastError) {
+        resolve(null);
+        return;
+      }
+      resolve(tabs && tabs[0] ? tabs[0] : null);
+    });
+  });
+}
+
+async function hasAuthenticatedMydtuTab() {
+  const tab = await getActiveTab();
+  if (!tab || !tab.url) return false;
+
+  try {
+    const activeUrl = new URL(tab.url);
+    return activeUrl.hostname.toLowerCase() === "mydtu.duytan.edu.vn" &&
+      !activeUrl.pathname.toLowerCase().includes("/signin.aspx");
+  } catch (error) {
+    return false;
+  }
+}
+
 let openQuickLinkTimeout = null;
-async function openQuickLink(targetUrl) {
+async function openQuickLink(targetUrl, forcedLoginType = '') {
   if (openQuickLinkTimeout) return;
   openQuickLinkTimeout = true;
   setTimeout(() => {
     openQuickLinkTimeout = null;
   }, 1000);
-  chrome.storage.local.set({ pendingRedirectUrl: targetUrl }, async () => {
-    if (targetUrl === SAKAI_URL) {
-      await chrome.tabs.create({ url: "https://mydtu.duytan.edu.vn/" });
+  const loginType = forcedLoginType || (targetUrl === SAKAI_URL ? "learning" : "portal");
+  const shouldOpenLogin = Boolean(forcedLoginType) ||
+    targetUrl === SAKAI_URL ||
+    (isMydtuUrl(targetUrl) && !(await hasAuthenticatedMydtuTab()));
+
+  chrome.storage.local.set({
+    pendingRedirectUrl: targetUrl,
+    pendingLoginType: loginType,
+  }, async () => {
+    if (shouldOpenLogin) {
+      const loginUrl = new URL("https://mydtu.duytan.edu.vn/Signin.aspx");
+      loginUrl.searchParams.set("_hieu_login_type", loginType);
+      await chrome.tabs.create({ url: loginUrl.toString() });
     } else {
       await chrome.tabs.create({ url: targetUrl });
     }
@@ -404,14 +448,15 @@ function bindUi() {
   const btnSakai = document.getElementById("btnSakaiHeader") || document.getElementById("btnSakai");
   if (btnSakai) {
     btnSakai.addEventListener("click", () => {
-      openQuickLink(SAKAI_URL);
+      openQuickLink(SAKAI_URL, "learning");
     });
   }
 
   const btnMydtu = document.getElementById("btnMydtuHeader") || document.getElementById("btnMydtu");
   if (btnMydtu) {
-    btnMydtu.addEventListener("click", () => {
-      openQuickLink("https://mydtu.duytan.edu.vn/");
+    btnMydtu.addEventListener("click", (event) => {
+      event.preventDefault();
+      openQuickLink(MYDTU_URL, "portal");
     });
   }
 

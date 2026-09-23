@@ -10,7 +10,7 @@
 		</data>
 		<key>Resources/Assets.car</key>
 		<data>
-		3+ljCT3qMvSPhdR9Wch5cbojqTg=
+		v5CJhIbN0ohKcd/pBntwYTLcd74=
 		</data>
 		<key>Resources/Base.lproj/Main.html</key>
 		<data>
@@ -18,15 +18,15 @@
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
 		<data>
-		/HRyE1ZZlFi9ox+Dp5PQB66S864=
+		6pE+uSusj/aAq8VgG3oWSx/7khA=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/MainMenu.nib</key>
 		<data>
-		4ce+yFBm/XE+RzWnQW7Oy1v65UE=
+		mGTY27IxKMeVYUcm+KDZJXkNoAM=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib</key>
 		<data>
-		6tYhO8PMqsbbdSWGN672gzecnDM=
+		V4lHcy8OB7klnQ3eEfr//gIP/6Y=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
 		<data>
@@ -82,7 +82,7 @@
 		</data>
 		<key>Resources/popup.html</key>
 		<data>
-		mrpY1T4k0dVzxkw7sr98A3iF/04=
+		Cq2HPwQbF+jE8i4JnjXWhhyieww=
 		</data>
 		<key>Resources/v.css</key>
 		<data>
@@ -90,7 +90,7 @@
 		</data>
 		<key>Resources/v.js</key>
 		<data>
-		q7jFBDmg4H83eHmPfLbm/XFCjwk=
+		SAoDlT8C2QyDSIM0tct053rkalE=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -99,172 +99,172 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			95O//FpCOvGvwmZUVjuu3IdEvWk=
+			/OmwGRbORcnNjnoLmSHJ5YPdYTA=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftAppKit" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"93e4a579dc797d359af753c1d9875e1e368a7be4" or cdhash H"fce9b01916ce45c9cd8e7a0b9921c9e583dd6130"</string>
 		</dict>
 		<key>Frameworks/libswiftCore.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			XvOkPcPLBYLlAM2EJAKqYjlecWw=
+			GX4mmXq+7/mQoj8oZdn8Hutw0Y8=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftCore" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"5896a3c5c845fa8e206333a333969a967f159eeb" or cdhash H"197e26997abeeff990a23f2865d9fc1eeb70d18f"</string>
 		</dict>
 		<key>Frameworks/libswiftCoreData.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			oCv8AY0olnDxLa7u5dFLfIlzqQk=
+			RgOKaMtfkc0qUMlFJgiXpeQ4Sdo=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftCoreData" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"9ffc88ce5cb9c9b9acd49f00caa1b083efdbe122" or cdhash H"46038a68cb5f91cd2a50c945260897a5e43849da"</string>
 		</dict>
 		<key>Frameworks/libswiftCoreFoundation.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			7u7K5meHootRuCG9yPdCCGV45ws=
+			BH44Vy47Lx+AwIteCd/JCOP+GvY=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftCoreFoundation" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"8fa7f3c353eb61af2b7fc8c12269195f74bea074" or cdhash H"047e38572e3b2f1f80c08b5e09dfc908e3fe1af6"</string>
 		</dict>
 		<key>Frameworks/libswiftCoreGraphics.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			eHQlX2BlYb00YyISeTLxfb0vqSc=
+			k0cSEkTzmj4aFYrjlQ01bP4lHFc=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftCoreGraphics" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"3604106a6a3cb32759dbdec9dd34797d3641fe01" or cdhash H"9347121244f39a3e1a158ae3950d356cfe251c57"</string>
 		</dict>
 		<key>Frameworks/libswiftCoreImage.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			FZ0JhWnVEIBUTjf8OPlGa44GzLw=
+			71/02RN7QBBmkWLMRa2YS0OEzOs=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftCoreImage" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"1c94028a679fd3abc70acbf9a125258c112c0371" or cdhash H"ef5ff4d9137b4010669162cc45ad984b4384cceb"</string>
 		</dict>
 		<key>Frameworks/libswiftDarwin.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			2PHHlxHYvvQ7V3s9xKAXqYy/UoA=
+			J8aEbcH96rf3olM1v8wJQms7xaI=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftDarwin" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"300b03492cc2be4543d5f2be1e06909f387af72d" or cdhash H"27c6846dc1fdeab7f7a25335bfcc09426b3bc5a2"</string>
 		</dict>
 		<key>Frameworks/libswiftDispatch.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			rbGHHL3DaqhsT7os5Gn5si0xJo0=
+			1DtZZpeByuwlmdUB3e/N6JGfZ14=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftDispatch" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"bab33e638bc83f0268af02eebce6bf5dd6b3c51f" or cdhash H"d43b59669781caec2599d501ddefcde8919f675e"</string>
 		</dict>
 		<key>Frameworks/libswiftFoundation.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			0jUrRZ6SEpCTuv7YH/Rsktp5W5g=
+			8t0+NaUGfny0OE73x/qjMHlQjFE=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftFoundation" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"d7e9fb967f6385f8a8b790ae5a59c01d83b2672c" or cdhash H"f2dd3e35a5067e7cb4384ef7c7faa33079508c51"</string>
 		</dict>
 		<key>Frameworks/libswiftIOKit.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			xhDHFOtRRIagVUkT7G6rfAZqu5s=
+			pQPvcS1eE2AmKSN5CMtcZiMT4PQ=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftIOKit" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"f5bd61791fbc60c97936524b070348de57792878" or cdhash H"a503ef712d5e13602629237908cb5c662313e0f4"</string>
 		</dict>
 		<key>Frameworks/libswiftMetal.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			ZxxuGLIP8EmEkpBjLkDZIRo4v8s=
+			tKr6i2JJtHEFLkK/fMudC093jZ4=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftMetal" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"1291840c54eedc74a0c7b25a0aa8a3ea8ba2dd1f" or cdhash H"b4aafa8b6249b471052e42bf7ccb9d0b4f778d9e"</string>
 		</dict>
 		<key>Frameworks/libswiftObjectiveC.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			7mr49kSWsi08dYhWGegb8WzsX78=
+			OwCGe/c9CItCxNr6jAps2hesJYA=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftObjectiveC" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"5f949b391729fb4cb0aac45efc729edf52fc94ea" or cdhash H"3b00867bf73d088b42c4dafa8c0a6cda17ac2580"</string>
 		</dict>
 		<key>Frameworks/libswiftQuartzCore.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			gZU8xk7iCx1QhQczwUroZ62uCGw=
+			AtxA7yzVGYRZPoPfhZZSpfLEEyU=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftQuartzCore" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"e02d111c168bcdb2d35b89d2b165838e343b452e" or cdhash H"02dc40ef2cd51984593e83df859652a5f2c41325"</string>
 		</dict>
 		<key>Frameworks/libswiftSafariServices.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			NF/QZDEQo5Oiu3E4q7QL7zXf54w=
+			STJMpnow7IWxrpaRc0DInaYkMFs=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftSafariServices" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"3e6bd92522a51c7e7e1e947a34e416a6eac9cc0d" or cdhash H"49324ca67a30ec85b1ae96917340c89da624305b"</string>
 		</dict>
 		<key>Frameworks/libswiftXPC.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			Dr4UuPZuXPZnDmC89Hx7l5MClsg=
+			uFKhujvCOYyZ4lm3G/9ojAmusY8=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftXPC" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"fcc4f33e2b4fdf2be11ccb50f72a1365b70294a8" or cdhash H"b852a1ba3bc2398c99e259b71bff688c09aeb18f"</string>
 		</dict>
 		<key>Frameworks/libswift_Concurrency.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			NOSEk7gdmrQysef6/4WsPCeCmhA=
+			Pr3e+QFHQ3D2oyoywLeBrPU4s88=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftConcurrency" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"3ebddef901474370f6a32a32c0b781acf538b3cf" or cdhash H"2df8f77ca131cd10508992f453212709099ea525"</string>
 		</dict>
 		<key>Frameworks/libswiftos.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			Rnml+t3EHLm2XI8yVxsEQXkGUf4=
+			c+BBGYIvLYzV7rQm3awrK5gpXe8=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftos" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"3406aab10f486b91c2d9334de341504de56a5631" or cdhash H"73e04119822f2d8cd5eeb426ddac2b2b98295def"</string>
 		</dict>
 		<key>Frameworks/libswiftsimd.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			MFa21XlC/C4BnloIXrx0K3/aplc=
+			yoevzZNzSjWnQqIYLmXdd/DhGvQ=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.apple.dt.runtime.swiftsimd" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"a91aa60521c71dd382e53441689bc0970469be1b" or cdhash H"ca87afcd93734a35a742a2182e65dd77f0e11af4"</string>
 		</dict>
 		<key>PlugIns/Hieu Extension pro Extension.appex</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			ojgYOp2g8XSLnPt/yJT4qAoi0Us=
+			LmG9GPFLBxWc71bXAlwBgXZmZ3o=
 			</data>
 			<key>requirement</key>
-			<string>identifier "com.yourCompany.Hieu-Extension-pro.Extension" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: nguyenhieu1952005@gmail.com (Y39ZQ3376H)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+			<string>cdhash H"2e61bd18f14b07159cef56d7025c01817666677a"</string>
 		</dict>
 		<key>Resources/AppIcon.icns</key>
 		<dict>
@@ -277,7 +277,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0ly9IV8U0LvQLBI2ntjvp15aalGIF/HU/VNlKuoxQGc=
+			LsEbkqi3T51E8IYva7sucPGD6x8FnKS3Cyv0T8+qnw8=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.html</key>
@@ -291,21 +291,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			UFaLzNFcEQalQB5lzkCw1bIrlnTQ1ul0SiMrjfHFsbQ=
+			YZsTDmxTtGAtHq5BQ1bQd+D4XMNWercDp8FkKrupz/g=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/MainMenu.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZfgeWOOPL2hfalyK5AE6J8smvkigyq+3951IIEy7t4M=
+			Fbv87lkJ1cbu+pxb26CWrQIlgSkmy88uJ9/4TcUvkBs=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			rdKr4YcR3qlc/jnwNTJ7pKGbYazA2c/ZKnNpjIawvXA=
+			0VSz2rEP9c1FF9kkA/H2K+kYShVS/7JisTQpgG94Uu4=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
@@ -403,7 +403,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			9TLfwuBkUbHXhogUsaNQ/Hq9MWNbU1WxrW20PHLVXJY=
+			UHKDDKBRBww9D6dM+72t65QNXzAgQHCTjNP3l7d2CCI=
 			</data>
 		</dict>
 		<key>Resources/v.css</key>
@@ -417,7 +417,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CWUi19qO3X3yB4wgCprGniwaFwocJvl2yyhyN3SaNSQ=
+			qc1lnY5zup/T2fzjf+fKr82atbRO6iCwjpwaj8BIxGE=
 			</data>
 		</dict>
 	</dict>

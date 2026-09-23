@@ -179,7 +179,11 @@
                     return response.data.captcha;
                 } else {
                     const errMsg = response ? (response.error || JSON.stringify(response.data)) : 'Không nhận được phản hồi từ background';
-                    console.error('[Hieu Captcha] Background báo lỗi giải Captcha (browser):', errMsg);
+                    if (response && response.data && (response.data.status === 'retry' || response.data.status === 'error')) {
+                        console.log('[Hieu Captcha] API chưa giải được ảnh captcha, sẽ tải ảnh mới và thử lại.');
+                    } else {
+                        console.error('[Hieu Captcha] Background báo lỗi giải Captcha (browser):', errMsg);
+                    }
                     return null;
                 }
             } catch (e) {
@@ -201,7 +205,11 @@
                         resolve(response.data.captcha);
                     } else {
                         const errMsg = response ? (response.error || JSON.stringify(response.data)) : 'Không nhận được phản hồi từ background';
-                        console.error('[Hieu Captcha] Background báo lỗi giải Captcha (chrome):', errMsg);
+                        if (response && response.data && (response.data.status === 'retry' || response.data.status === 'error')) {
+                            console.log('[Hieu Captcha] API chưa giải được ảnh captcha, sẽ tải ảnh mới và thử lại.');
+                        } else {
+                            console.error('[Hieu Captcha] Background báo lỗi giải Captcha (chrome):', errMsg);
+                        }
                         resolve(null);
                     }
                 });
@@ -213,6 +221,42 @@
     }
 
     let lastSolvedSrc = '';
+
+    async function refreshCaptchaForRetry() {
+        const captchaInput = document.querySelector('input[name="txtCaptcha"], input#txtCaptcha, .txtcaptcha, input[name*="txtCaptcha" i], input[id*="txtCaptcha" i], input[id*="txtCaptchar" i], .textCaptcha');
+        const captchaImage = document.querySelector('img[src*="CaptchaImage.axd"], img[id*="CaptchaImage" i], img[src*="captcha" i], #loadCaptchaHere img');
+        const oldSrc = captchaImage ? captchaImage.src : '';
+
+        lastSolvedSrc = '';
+        if (captchaInput) {
+            captchaInput.value = '';
+            captchaInput.dispatchEvent(new Event('input', { bubbles: true }));
+            captchaInput.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+
+        if (!captchaImage) {
+            await new Promise(resolve => setTimeout(resolve, 800));
+            return;
+        }
+
+        captchaImage.dataset.solving = 'false';
+        try {
+            captchaImage.click();
+        } catch (error) {}
+
+        await new Promise(resolve => setTimeout(resolve, 700));
+
+        const nextCaptchaImage = document.querySelector('img[src*="CaptchaImage.axd"], img[id*="CaptchaImage" i], img[src*="captcha" i], #loadCaptchaHere img');
+        if (nextCaptchaImage && nextCaptchaImage.src === oldSrc) {
+            try {
+                const retryUrl = new URL(oldSrc, window.location.href);
+                retryUrl.searchParams.set('_hieu_captcha_retry', Date.now().toString());
+                nextCaptchaImage.src = retryUrl.toString();
+            } catch (error) {}
+        }
+
+        await new Promise(resolve => setTimeout(resolve, 800));
+    }
 
     // Hàm chính xử lý giải captcha và điền vào form
     async function processCaptcha(force = false) {
@@ -251,7 +295,7 @@
         const base64Image = await getBase64Image(imgCaptcha);
         if (!base64Image) {
             imgCaptcha.dataset.solving = 'false';
-            console.error('[Hieu Captcha] Không lấy được Base64 ảnh.');
+            console.log('[Hieu Captcha] Chưa lấy được ảnh captcha, sẽ thử lại bằng ảnh mới.');
             return null;
         }
 
@@ -265,10 +309,14 @@
         inputCaptcha.placeholder = originalPlaceholder;
         imgCaptcha.dataset.solving = 'false';
 
-        if (captchaResult) {
-            console.log('[Hieu Captcha] Nhận kết quả từ API:', captchaResult);
+        const normalizedCaptcha = captchaResult
+            ? String(captchaResult).replace(/\s+/g, '').toUpperCase()
+            : '';
+
+        if (/^[A-Z0-9]{4}$/.test(normalizedCaptcha)) {
+            console.log('[Hieu Captcha] Nhận kết quả từ API:', normalizedCaptcha);
             lastSolvedSrc = imgCaptcha.src;
-            inputCaptcha.value = captchaResult;
+            inputCaptcha.value = normalizedCaptcha;
             inputCaptcha.dispatchEvent(new Event('input', { bubbles: true }));
             inputCaptcha.dispatchEvent(new Event('change', { bubbles: true }));
             if (window.location.href.toLowerCase().includes('/signin.aspx')) {
@@ -291,9 +339,9 @@
                 }
             }, 300);
 
-            return captchaResult;
+            return normalizedCaptcha;
         } else {
-            console.log('[Hieu Captcha] Giải thất bại hoặc lỗi kết nối API.');
+            console.log('[Hieu Captcha] Kết quả captcha chưa hợp lệ, sẽ yêu cầu ảnh mới.');
             inputCaptcha.placeholder = 'Lỗi giải Captcha';
             return null;
         }
@@ -504,7 +552,63 @@
         return bestOpt;
     }
 
+    function isAutomaticReloadDisabledPage() {
+        const currentUrl = new URL(window.location.href);
+        const host = currentUrl.hostname.toLowerCase();
+        const path = currentUrl.pathname.toLowerCase();
+
+        const isMyDtuInfoPage = host === 'mydtu.duytan.edu.vn' &&
+            path === '/sites/index.aspx' &&
+            currentUrl.searchParams.get('p')?.toLowerCase() === 'home_infowebpart' &&
+            currentUrl.searchParams.get('functionid') === '88';
+
+        const isMyDtuHomePage = host === 'mydtu.duytan.edu.vn' &&
+            !path.includes('/signin.aspx') &&
+            Boolean(document.querySelector('.welcome .hello.man, .welcome .hello'));
+
+        const isSakaiPortalPage = host === 'studyresource.duytan.edu.vn' &&
+            (path === '/portal' || path.startsWith('/portal/'));
+
+        return isMyDtuInfoPage || isMyDtuHomePage || isSakaiPortalPage;
+    }
+
+    function stopAutomaticReloadForProtectedPage() {
+        if (!isAutomaticReloadDisabledPage()) {
+            return false;
+        }
+
+        if (loginReloadCountdownInterval) {
+            clearInterval(loginReloadCountdownInterval);
+            loginReloadCountdownInterval = null;
+        }
+        if (loginReloadTimerId) {
+            clearTimeout(loginReloadTimerId);
+            loginReloadTimerId = null;
+        }
+
+        // Chỉ dừng các timer/watchdog reload. Extension vẫn tiếp tục chạy
+        // các chức năng khác trên trang MyDTU/Sakai đã đăng nhập.
+        automaticReloadDisabled = true;
+        sessionStorage.removeItem('hieu_login_attempt');
+        sessionStorage.removeItem('hieu_login_retry_pending');
+        cancelBackgroundLoginWatchdog();
+        console.log('[Hieu Pro] Đã tắt riêng tính năng tự động reload tại trang đã đăng nhập:', window.location.href);
+        return true;
+    }
+
     function checkServerErrorAndReload() {
+        if (isAutomaticReloadDisabledPage()) {
+            return false;
+        }
+
+        // Không can thiệp vào Sakai hoặc các hệ thống DTU khác sau khi đăng nhập.
+        // Việc reload tự động chỉ dành cho máy chủ MyDTU.
+        const currentLocation = new URL(window.location.href);
+        if (currentLocation.hostname.toLowerCase() !== 'mydtu.duytan.edu.vn' ||
+            !currentLocation.pathname.toLowerCase().includes('/signin.aspx')) {
+            return false;
+        }
+
         const docText = document.body ? document.body.textContent || '' : '';
         const docTitle = document.title || '';
         
@@ -591,6 +695,17 @@
 
     function checkLoginWatchdog() {
         const currentUrl = new URL(window.location.href);
+        if (stopAutomaticReloadForProtectedPage()) {
+            return false;
+        }
+
+        if (!currentUrl.pathname.toLowerCase().includes('/signin.aspx')) {
+            sessionStorage.removeItem('hieu_login_attempt');
+            sessionStorage.removeItem('hieu_login_retry_pending');
+            cancelBackgroundLoginWatchdog();
+            return true;
+        }
+
         if (currentUrl.searchParams.has('_hieu_retry')) {
             sessionStorage.removeItem('hieu_login_attempt');
             cancelBackgroundLoginWatchdog();
@@ -646,6 +761,7 @@
 
     const LOGIN_RELOAD_DELAY_MS = 5000;
     let loginErrorReloading = false;
+    let automaticReloadDisabled = false;
     let loginReloadCountdownInterval = null;
     let loginReloadTimerId = null;
 
@@ -774,34 +890,80 @@
         }
     }
 
-    function selectLearningLoginType() {
-        const learningRadio = document.getElementById('Radio3') ||
-                              document.querySelector('input[name="radType"][value="3"]');
-        if (!learningRadio) {
-            console.log('[Hieu Pro] Chưa tìm thấy lựa chọn Learning trên trang đăng nhập.');
+    function selectLoginType(loginType) {
+        const isLearning = loginType === 'learning';
+        const radioValue = isLearning ? '3' : '1';
+        const radioId = isLearning ? 'Radio3' : 'Radio1';
+        const spanId = isLearning ? 'Span3' : 'Span1';
+        const label = isLearning ? 'Learning' : 'Portal';
+        const loginRadio = document.getElementById(radioId) ||
+                           document.querySelector(`input[name="radType"][value="${radioValue}"]`);
+        if (!loginRadio) {
+            console.log(`[Hieu Pro] Chưa tìm thấy lựa chọn ${label} trên trang đăng nhập.`);
             return false;
         }
 
         const valChecked = document.getElementById('valChecked');
-        const alreadySelected = learningRadio.checked && valChecked && valChecked.value === '3';
-        // click() kích hoạt inline handler setValueChecked('3') của trang.
+        const alreadySelected = loginRadio.checked && (!valChecked || valChecked.value === radioValue);
+        // click() kích hoạt inline handler setValueChecked(...) của trang.
         if (!alreadySelected) {
-            learningRadio.click();
+            loginRadio.click();
         }
         document.querySelectorAll('input[name="radType"]').forEach(radio => {
-            radio.checked = radio === learningRadio;
+            radio.checked = radio === loginRadio;
         });
 
-        document.querySelectorAll('#application span[id^="Span"]').forEach(span => {
-            span.classList.toggle('active', span.id === 'Span3');
+        document.querySelectorAll('span[id^="Span"]').forEach(span => {
+            span.classList.toggle('active', span.id === spanId);
         });
 
         if (valChecked) {
-            setLoginFieldValue(valChecked, '3');
+            setLoginFieldValue(valChecked, radioValue);
         }
 
-        console.log('[Hieu Pro] Yêu cầu mở Sakai: đã chọn đăng nhập bằng Learning.');
+        console.log(`[Hieu Pro] Đã chọn đăng nhập bằng ${label} trước khi nhập form.`);
         return true;
+    }
+
+    function selectLearningLoginType() {
+        return selectLoginType('learning');
+    }
+
+    function selectPortalLoginType() {
+        return selectLoginType('portal');
+    }
+
+    let loginTypeSelectionGuardTimer = null;
+
+    function startLoginTypeSelectionGuard() {
+        if (!window.location.href.toLowerCase().includes('/signin.aspx') || loginTypeSelectionGuardTimer !== null) {
+            return;
+        }
+
+        const requestedType = new URL(window.location.href).searchParams.get('_hieu_login_type') === 'learning'
+            ? 'learning'
+            : 'portal';
+        let attempts = 0;
+
+        const applySelection = () => {
+            if (!window.location.href.toLowerCase().includes('/signin.aspx')) {
+                clearInterval(loginTypeSelectionGuardTimer);
+                loginTypeSelectionGuardTimer = null;
+                return;
+            }
+
+            if (selectLoginType(requestedType) || attempts >= 100) {
+                clearInterval(loginTypeSelectionGuardTimer);
+                loginTypeSelectionGuardTimer = null;
+                return;
+            }
+            attempts++;
+        };
+
+        applySelection();
+        if (loginTypeSelectionGuardTimer === null) {
+            loginTypeSelectionGuardTimer = setInterval(applySelection, 100);
+        }
     }
 
     async function autoLogin() {
@@ -821,15 +983,28 @@
             return;
         }
         
+        const loginTypeFromUrl = new URL(window.location.href).searchParams.get('_hieu_login_type');
         chrome.storage.local.get(['myDtuUser', 'myDtuPass', 'pendingRedirectUrl', 'pendingLoginType'], async data => {
             const user = data.myDtuUser;
             const pass = data.myDtuPass;
-            const shouldUseLearning = data.pendingLoginType === 'learning' ||
-                                      isSakaiPendingUrl(data.pendingRedirectUrl);
+            const shouldUseLearning = loginTypeFromUrl === 'learning' ||
+                                      (!loginTypeFromUrl &&
+                                       data.pendingLoginType === 'learning' &&
+                                       isSakaiPendingUrl(data.pendingRedirectUrl));
+            const requestedLoginType = shouldUseLearning ? 'learning' : 'portal';
 
-            if (shouldUseLearning && !selectLearningLoginType()) {
+            // Nếu website chuyển một mục menu về Signin.aspx mà không giữ
+            // query _hieu_login_type, vẫn phải giữ trang đích đang chờ.
+            // Chỉ xoá storage khi thật sự không có tác vụ menu nào đang chờ.
+            const hasPendingMenuRedirect = typeof data.pendingRedirectUrl === 'string' &&
+                data.pendingRedirectUrl.trim() !== '';
+            if (!loginTypeFromUrl && !hasPendingMenuRedirect) {
+                chrome.storage.local.remove(['pendingRedirectUrl', 'pendingLoginType']);
+            }
+
+            if (!selectLoginType(requestedLoginType)) {
                 loginFormPrepared = false;
-                console.log('[Hieu Pro] Phải chọn Learning trước khi nhập form, sẽ thử lại...');
+                console.log(`[Hieu Pro] Phải chọn ${requestedLoginType === 'learning' ? 'Learning' : 'Portal'} trước khi nhập form, sẽ thử lại...`);
                 setTimeout(autoLogin, 300);
                 return;
             }
@@ -880,16 +1055,21 @@
             }
 
             let captchaAttempts = 0;
-            while (txtCaptcha.value.trim().length !== 4 && captchaAttempts < 10) {
+            while (txtCaptcha.value.trim().length !== 4 && captchaAttempts < 3) {
                 captchaAttempts++;
                 await processCaptcha(true);
                 if (txtCaptcha.value.trim().length === 4) break;
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                if (captchaAttempts < 3) {
+                    await refreshCaptchaForRetry();
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                }
             }
 
             if (txtCaptcha.value.trim().length !== 4) {
-                console.warn('[Hieu Pro] Chưa có mã captcha hợp lệ sau các lần thử giải.');
+                console.log('[Hieu Pro] Chưa có mã captcha hợp lệ, sẽ tải ảnh mới và thử lại tự động.');
                 loginFlowRunning = false;
+                await refreshCaptchaForRetry();
+                setTimeout(autoLogin, 1200);
                 return;
             }
 
@@ -897,9 +1077,7 @@
 
             // Bước 4: Kiểm tra lại toàn bộ và Ấn Đăng nhập
             console.log('[Hieu Pro] Bước 4: Kiểm tra lại các trường và ấn Đăng nhập');
-            if (shouldUseLearning) {
-                selectLearningLoginType();
-            }
+            selectLoginType(requestedLoginType);
 
             if (!txtUser.value || txtUser.value.trim() === '') {
                 setLoginFieldValue(txtUser, user);
@@ -930,7 +1108,11 @@
 
     function checkPendingRedirect() {
         if (window !== window.top) return;
-        chrome.storage.local.get(['pendingRedirectUrl'], data => {
+        // Dừng riêng auto-reload nhưng vẫn phải xử lý pendingRedirectUrl
+        // để tác vụ menu tiếp tục đi tới đúng trang đích sau đăng nhập.
+        stopAutomaticReloadForProtectedPage();
+
+        chrome.storage.local.get(['pendingRedirectUrl', 'pendingLoginType'], data => {
             const pendingUrl = data.pendingRedirectUrl;
             if (!pendingUrl) return;
 
@@ -941,6 +1123,34 @@
 
                 const currentPath = currentObj.pathname.toLowerCase();
                 const pendingPath = pendingObj.pathname.toLowerCase();
+                const currentHost = currentObj.hostname.toLowerCase();
+
+                const isMydtuRootTarget = data.pendingLoginType === 'portal' &&
+                    pendingObj.hostname.toLowerCase() === 'mydtu.duytan.edu.vn' &&
+                    pendingPath === '/' &&
+                    currentHost === 'mydtu.duytan.edu.vn' &&
+                    !currentPath.includes('/signin.aspx');
+
+                if (isMydtuRootTarget) {
+                    chrome.storage.local.remove(['pendingRedirectUrl', 'pendingLoginType']);
+                    cancelBackgroundLoginWatchdog();
+                    console.log('[Hieu Pro] Đã vào trang MyDTU sau đăng nhập, xóa đích gốc để tránh chuyển hướng lặp.');
+                    return;
+                }
+
+                const reachedSakai = data.pendingLoginType === 'learning' && (
+                    currentHost.includes('sakai') ||
+                    currentHost.includes('elearning') ||
+                    currentPath === '/portal' ||
+                    currentPath.startsWith('/portal/')
+                );
+
+                if (reachedSakai) {
+                    chrome.storage.local.remove(['pendingRedirectUrl', 'pendingLoginType']);
+                    cancelBackgroundLoginWatchdog();
+                    console.log('[Hieu Pro] Đã vào Sakai, xóa trạng thái chuyển hướng và không reload lại trang.');
+                    return;
+                }
 
                 let isMatch = false;
                 if (currentPath === pendingPath) {
@@ -966,9 +1176,12 @@
                     return;
                 }
 
-                // Đã đăng nhập thành công nhưng ở trang khác (ví dụ trang chủ index.aspx?p=home)
+                // Xóa trước khi chuyển hướng để không lặp lại khi đích tự chuyển tiếp
+                // sang một URL khác (đặc biệt là luồng Sakai).
                 console.log('[Hieu Pro] Chuyển hướng tab đến trang đích:', pendingUrl);
-                window.location.replace(pendingUrl);
+                chrome.storage.local.remove(['pendingRedirectUrl', 'pendingLoginType'], () => {
+                    window.location.replace(pendingUrl);
+                });
             } catch (err) {
                 console.error('[Hieu Pro] Lỗi khi xử lý pendingRedirectUrl:', err);
                 chrome.storage.local.remove(['pendingRedirectUrl', 'pendingLoginType']);
@@ -1033,6 +1246,7 @@
         
         // Tự động đăng nhập & theo dõi lỗi đăng nhập (đếm 5 giây rồi reload lại trang, tiếp tục lặp lại)
         watchLoginErrors();
+        startLoginTypeSelectionGuard();
         autoLogin();
         
         // Tự động chọn năm học và học kỳ nếu đang ở trang chọn học kỳ
@@ -1114,6 +1328,9 @@
     function startExtension() {
         chrome.storage.local.get({ extensionEnabled: true }, (res) => {
             if (res.extensionEnabled === false) {
+                // Điều hướng tác vụ menu phải hoạt động độc lập với các tính
+                // năng tự động khác của extension.
+                checkPendingRedirect();
                 console.log('[Hieu Pro] Extension đang ở trạng thái TẮT (OFF).');
                 return;
             }

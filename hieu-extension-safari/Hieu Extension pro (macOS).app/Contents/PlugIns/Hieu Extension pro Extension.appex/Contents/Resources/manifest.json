@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Hieu Extension pro",
-  "version": "3.3.0",
+  "version": "3.5.8",
   "description": "Bộ công cụ hỗ trợ thao tác học tập nhanh, gọn và tiện hơn trên trình duyệt.",
   "permissions": [
     "activeTab",
