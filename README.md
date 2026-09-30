@@ -27,7 +27,7 @@
 
 ## 🌟 Giới thiệu tổng quan
 
-**Hieu Extension Pro** (phiên bản `v3.3.0`) là giải pháp tiện ích mở rộng toàn diện được thiết kế chuyên biệt cho sinh viên Đại học Duy Tân (DTU). Bộ công cụ được đóng gói hoàn chỉnh cho 2 nền tảng trình duyệt lớn nhất hiện nay:
+**Hieu Extension Pro** (phiên bản **`v3.5.8`**) là giải pháp tiện ích mở rộng toàn diện được thiết kế chuyên biệt cho sinh viên Đại học Duy Tân (DTU). Bộ công cụ được đóng gói hoàn chỉnh cho 2 nền tảng trình duyệt lớn nhất hiện nay:
 
 1. 🌐 **Hieu Extension Chrome** (`hieu-extension-chrome/`): Dành cho máy tính sử dụng các trình duyệt nhân Chromium như **Google Chrome, Microsoft Edge, Brave, Cốc Cốc, Opera,...**
 2. 🍏 **Hieu Extension Safari** (`hieu-extension-safari/`): Dành cho hệ sinh thái Apple gồm **iPhone, iPad (iOS/iPadOS)** và **máy Mac (macOS)** thông qua ứng dụng Safari Web Extension.
@@ -38,9 +38,9 @@
 
 ## ⚡ Các tính năng nổi bật
 
-- 🤖 **AI / OCR Auto Captcha Solver:** Tự động nhận dạng mã Captcha hình ảnh trên các trang đăng nhập MyDTU, đăng ký môn học và đánh giá giảng viên thông qua API Backend OCR tốc độ cao, điền ngay lập tức vào form.
-- 🔑 **Tự động đăng nhập (Auto Login & Multi-Account):** Lưu trữ nhiều tài khoản sinh viên, tự động điền Mã SV, Mật khẩu và tự động click Đăng nhập ngay sau khi Captcha được giải.
-- 🔄 **Watchdog & Tự động phục hồi lỗi kết nối (Auto Reload):** Tự động phát hiện khi hệ thống trường gặp lỗi máy chủ (500, 502, 503, 504, Quá tải, Server Error, trang trắng) hoặc bị kẹt treo đăng nhập quá 15 giây để tự động refresh tải lại trang.
+- 🤖 **AI / OCR Auto Captcha Solver:** Tự động nhận dạng mã Captcha hình ảnh trên các trang đăng nhập MyDTU, đăng ký môn học và đánh giá giảng viên thông qua API Backend OCR tốc độ cao, điền ngay lập tức vào form. Hỗ trợ tự động thử lại (Auto-retry) nếu gặp lỗi 400 hoặc ảnh mờ.
+- 🔑 **Tự động đăng nhập & Điều hướng thông minh MyDTU / Sakai (v3.5.8):** Lưu trữ nhiều tài khoản sinh viên, tự động điền Mã SV, Mật khẩu và click Đăng nhập. Tự động nhận diện và phân luồng đăng nhập giữa Cổng thông tin (Portal) và Hệ thống học trực tuyến Sakai E-learning (`_hieu_login_type`).
+- 🔄 **Watchdog thông minh & Tự động phục hồi kết nối (Smart Protected Reload):** Tự động phát hiện khi hệ thống trường gặp lỗi máy chủ (500, 502, 503, 504, Quá tải, Server Error, trang trắng) hoặc bị kẹt treo đăng nhập để refresh lại trang. Tự động nhận diện trang an toàn để vô hiệu hóa reload khi người dùng đã vào MyDTU hoặc đang trong Sakai Portal.
 - 📆 **Tự động chọn Năm học & Học kỳ:** Tự động phát hiện và chọn năm học mới nhất, học kỳ mới nhất (HK1, HK2, HK3, Học kỳ hè) và bấm nút Tiếp tục.
 - 📚 **Hỗ trợ Đăng ký môn học siêu tốc:** Lưu trước danh sách tối đa 10 mã môn học / mã lớp cần đăng ký. Tự động điền mã lớp vào ô đăng ký, tự động thử lại khi captcha sai và ghi nhận lịch sử môn đã đăng ký thành công.
 - 📝 **Đánh giá Giảng viên 1-Click:** Hỗ trợ 6 mức đánh giá (Mức 1: Tốt ➔ Mức 6: Kém). Tự động điền 4 nhận xét ngẫu nhiên (R48: Giảng viên, R49: Phòng ban hỗ trợ, R50: Cơ sở vật chất, R51: Chương trình học) và tích chọn toàn bộ các thang điểm radio tương ứng, tự giải captcha và submit.
@@ -54,20 +54,21 @@
 ## 📁 Cấu trúc dự án
 
 ```text
-dtu/
+dtu extension/
 ├── README.md                      # Tài liệu hướng dẫn chi tiết (File này)
-├── hieu-extension-chrome/         # Phiên bản Extension cho Chromium (Chrome, Edge, Cốc Cốc)
-│   ├── manifest.json              # Manifest V3 cấu hình quyền và tài nguyên
-│   ├── background.js              # Service Worker trung gian gọi API giải captcha (CORS bypass)
+├── hieu-extension-chrome/         # Phiên bản Extension cho Chromium (Chrome, Edge, Cốc Cốc, Brave, Opera)
+│   ├── manifest.json              # Manifest V3 (v3.5.8) cấu hình quyền và tài nguyên
+│   ├── background.js              # Service Worker: OCR Captcha, điều hướng & Watchdog bảo vệ
 │   ├── content.js                 # Script can thiệp DOM: Auto login, điền captcha, đánh giá, đăng ký môn
 │   ├── bypass.js                  # Script can thiệp Main World: bypass alert/confirm chặn luồng
 │   ├── popup.html                 # Giao diện chính của tiện ích
 │   ├── v.js                       # Logic xử lý giao diện popup, lưu trữ local storage
 │   ├── v.css                      # Hệ thống style Cyberpunk Neon giao diện
-│   └── *.png                      # Bộ icon và tài nguyên đồ họa
+│   └── *.png                      # Bộ icon và tài nguyên đồ họa (16, 32, 48, 128, 512, dtu, book, pen, logo)
 │
 └── hieu-extension-safari/         # Phiên bản Xcode Safari Web Extension cho iOS & macOS
-    ├── Hieu Extension pro v3.ipa  # File IPA đã đóng gói sẵn để cài lên iPhone / iPad
+    ├── Hieu Extension pro v4.ipa  # File IPA v4 mới nhất đã đóng gói sẵn để cài lên iPhone / iPad
+    ├── Hieu Extension pro v3.ipa  # File IPA v3
     ├── Hieu Extension pro (macOS).app # Ứng dụng chạy trực tiếp trên macOS
     ├── Hieu Extension pro.xcodeproj # Dự án Xcode nguồn để build hoặc chỉnh sửa
     ├── Shared (App)/              # Mã nguồn giao diện ứng dụng chứa (Container App)
@@ -97,7 +98,7 @@ dtu/
 1. Bấm vào nút **Tải tiện ích đã giải nén (Load unpacked)** xuất hiện ở góc trên bên trái.
 2. Điều hướng và chọn thư mục:
    ```text
-   /Users/hieuvannguyen/Downloads/ipa/dtu/hieu-extension-chrome
+   hieu-extension-chrome/
    ```
 3. Nhấn **Select / Mở** để hoàn tất nạp tiện ích.
 
@@ -119,14 +120,15 @@ Phiên bản dành riêng cho các thiết bị Apple: **iPhone, iPad (iOS/iPadO
 
 ### Cách 1: Cài đặt trực tiếp file IPA trên iOS
 
-Thư mục `hieu-extension-safari/` đã có sẵn file IPA đóng gói:
-👉 `hieu-extension-safari/Hieu Extension pro v3.ipa`
+Thư mục `hieu-extension-safari/` đã có sẵn các file IPA đóng gói:
+- 👉 **`hieu-extension-safari/Hieu Extension pro v4.ipa`** *(Bản mới nhất - Khuyên dùng)*
+- 👉 `hieu-extension-safari/Hieu Extension pro v3.ipa` *(Bản dự phòng)*
 
 Bạn có thể cài đặt file này lên iPhone / iPad bằng một trong các phương pháp sau:
 
 #### Phương án A: Cài qua TrollStore (Tốt nhất - Vĩnh viễn không thu hồi)
 *(Dành cho máy đã cài sẵn TrollStore)*
-1. Gửi file `Hieu Extension pro v3.ipa` sang iPhone qua AirDrop, Telegram, Google Drive hoặc chép qua cáp.
+1. Gửi file `Hieu Extension pro v4.ipa` sang iPhone qua AirDrop, Telegram, Google Drive hoặc chép qua cáp.
 2. Mở file trong ứng dụng **TrollStore** và chọn **Install**.
 3. Ứng dụng sẽ được cài đặt ngay lập tức và không bao giờ bị hết hạn chứng chỉ (revoked).
 
@@ -134,7 +136,7 @@ Bạn có thể cài đặt file này lên iPhone / iPad bằng một trong các
 *(Dành cho thiết bị chưa cài TrollStore, sử dụng Apple ID cá nhân để ký chứng chỉ 7 ngày)*
 1. Mở **Sideloadly** hoặc **AltStore** trên máy tính.
 2. Kết nối iPhone/iPad với máy tính bằng cáp.
-3. Kéo thả file `Hieu Extension pro v3.ipa` vào Sideloadly.
+3. Kéo thả file `Hieu Extension pro v4.ipa` vào Sideloadly.
 4. Điền tài khoản Apple ID để ký chứng chỉ và bấm **Start**.
 5. Sau khi cài xong trên điện thoại: Vào **Cài đặt** ➔ **Cài đặt chung** ➔ **Quản lý VPN & Thiết bị** ➔ Chọn chứng chỉ Apple ID của bạn và chọn **Tin cậy (Trust)**.
 
@@ -169,7 +171,7 @@ Nếu bạn đang sử dụng máy Mac:
 Nếu bạn muốn tùy biến mã nguồn hoặc tự cài trực tiếp qua cáp lập trình:
 1. Mở file dự án:
    ```text
-   /Users/hieuvannguyen/Downloads/ipa/dtu/hieu-extension-safari/Hieu Extension pro.xcodeproj
+   hieu-extension-safari/Hieu Extension pro.xcodeproj
    ```
 2. Trong cửa sổ Xcode, chọn target:
    - Chọn **iOS (App)** nếu muốn cài lên iPhone / iPad thật hoặc máy ảo iOS Simulator.
@@ -264,6 +266,6 @@ Nếu bạn muốn tùy biến mã nguồn hoặc tự cài trực tiếp qua c�
 ---
 
 <p align="center">
-  <b>Tác giả: Nguyen Van Hieu (@nguyenhieu195)</b><br>
+  <b>Tác giả: Nguyen Van Hieu (<a href="https://github.com/hieung195">@hieung195</a>)</b><br>
   <i>Chúc các bạn sinh viên DTU có những kỳ học tập thật hiệu quả và thuận lợi!</i>
 </p>
